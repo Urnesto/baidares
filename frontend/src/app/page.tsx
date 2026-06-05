@@ -26,8 +26,9 @@ export default function Home() {
 
         <div className="relative z-[5] max-w-content mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1.25fr_0.9fr] gap-10 items-end pt-[10.625rem] pb-[4.375rem]">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-[0.6875rem] tracking-[0.16em] uppercase bg-[rgba(244,243,234,0.14)] backdrop-blur-md px-[0.875rem] py-[0.4375rem] rounded-full mb-[1.375rem] border border-[rgba(244,243,234,0.18)] whitespace-nowrap">
-              ◐ Open May–October · Žemaitija regional park
+            <div className="inline-flex items-center gap-2 font-mono text-[0.6875rem] tracking-[0.16em] uppercase bg-[rgba(244,243,234,0.14)] backdrop-blur-md px-[0.875rem] py-[0.4375rem] rounded-full mb-[1.375rem] border border-[rgba(244,243,234,0.18)] max-w-full overflow-hidden">
+              <span className="hidden sm:inline">◐ Kayaking · Rafting · SUP · Sauna</span>
+              <span className="sm:hidden">◐ Kayaking · Rafting · SUP</span>
             </div>
             <h1
               className="font-serif font-normal m-0 leading-[1.0] tracking-[-0.005em]"
