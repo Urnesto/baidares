@@ -6,38 +6,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        forest: {
-          950: "#101d15",
-          900: "#142419",
-          800: "#1b2e22",
-          700: "#244031",
-          600: "#2e5638",
-        },
-        accent: {
-          DEFAULT: "#2f6b3a",
-          hover:   "#27592f",
-        },
-        sage: {
-          400: "#9fb38e",
-          300: "#c2d2b1",
-          200: "#d8e2cb",
-        },
-        paper: {
-          DEFAULT: "#f3f1e8",
-          2:       "#ece9dd",
-        },
-        surface: {
-          DEFAULT: "#ffffff",
-          2:       "#fbfaf4",
-        },
-        ink: {
-          DEFAULT: "#18241c",
-          soft:    "#3c4a3f",
-        },
-        muted: {
-          DEFAULT: "#6f7a68",
-          2:       "#8b9583",
-        },
+        /* Forest greens */
+        "forest-950": "#101d15",
+        "forest-900": "#142419",
+        "forest-800": "#1b2e22",
+        "forest-700": "#244031",
+        "forest-600": "#2e5638",
+
+        /* Accent */
+        accent:       "#2f6b3a",
+        "accent-hover": "#27592f",
+
+        /* Sage */
+        "sage-400": "#9fb38e",
+        "sage-300": "#c2d2b1",
+        "sage-200": "#d8e2cb",
+
+        /* Surfaces */
+        paper:      "#f3f1e8",
+        "paper-2":  "#ece9dd",
+        surface:    "#ffffff",
+        "surface-2": "#fbfaf4",
+        cream:      "#f4f3ea",
+
+        /* Text */
+        ink:        "#18241c",
+        "ink-soft": "#3c4a3f",
+        muted:      "#6f7a68",
+        "muted-2":  "#8b9583",
+
+        /* Accents */
         amber:  "#caa24a",
         water:  "#6b9a93",
       },
@@ -49,10 +47,10 @@ const config: Config = {
       },
 
       borderRadius: {
-        sm:   "12px",
-        DEFAULT: "18px",
-        lg:   "26px",
-        pill: "999px",
+        sm:      "0.75rem",
+        DEFAULT: "1.125rem",
+        lg:      "1.625rem",
+        pill:    "999px",
       },
 
       boxShadow: {
@@ -66,7 +64,7 @@ const config: Config = {
       },
 
       maxWidth: {
-        content: "1180px",
+        content: "73.75rem",
       },
     },
   },

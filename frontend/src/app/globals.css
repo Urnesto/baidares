@@ -8,20 +8,28 @@
   --font-mono:  "JetBrains Mono", ui-monospace, monospace;
 }
 
-*, *::before, *::after { box-sizing: border-box }
-html { scroll-behavior: smooth }
-
-body {
-  margin: 0;
-  font-family: "Hanken Grotesk", system-ui, sans-serif;
-  background: #f3f1e8;
-  color: #18241c;
-  font-size: 16px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+:root {
+  --line: rgba(20, 36, 27, 0.12);
+  --line-soft: rgba(20, 36, 27, 0.07);
+  --ease: cubic-bezier(0.4, 0.14, 0.2, 1);
 }
 
-img    { max-width: 100%; display: block }
-a      { color: inherit; text-decoration: none }
-button { font-family: inherit; cursor: pointer }
+@layer base {
+  *, *::before, *::after { box-sizing: border-box }
+  html { scroll-behavior: smooth }
+
+  body {
+    margin: 0;
+    font-family: "Hanken Grotesk", system-ui, sans-serif;
+    background: #f3f1e8;
+    color: #18241c;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  img    { max-width: 100%; display: block }
+  a      { color: inherit; text-decoration: none }
+  button { font-family: inherit; cursor: pointer }
+}
