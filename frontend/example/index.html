@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asvėjos baidarių centras — Explore Every Waterway</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---------- HERO ---------- */
+  .hero{position:relative;min-height:760px;color:#f4f3ea;overflow:hidden}
+  .hero__bg{position:absolute;inset:0;z-index:0;border-radius:0}
+  .hero__bg::before{content:"";position:absolute;inset:0;z-index:2;
+    background:linear-gradient(180deg,rgba(16,29,21,.5) 0%,rgba(16,29,21,.18) 34%,rgba(16,29,21,.62) 100%),
+              linear-gradient(90deg,rgba(16,29,21,.5) 0%,rgba(16,29,21,.05) 58%)}
+  .hero__inner{position:relative;z-index:5;display:grid;grid-template-columns:1.25fr .9fr;gap:40px;
+    align-items:end;padding:170px 0 70px}
+  .hero__pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.16em;text-transform:uppercase;background:rgba(244,243,234,.14);backdrop-filter:blur(6px);
+    padding:7px 14px;border-radius:999px;margin-bottom:22px;border:1px solid rgba(244,243,234,.18);white-space:nowrap}
+  .hero h1{font-size:clamp(48px,6.4vw,88px);text-shadow:0 2px 30px rgba(0,0,0,.25)}
+  .hero__lede{font-size:18px;color:rgba(244,243,234,.9);max-width:42ch;margin:22px 0 30px;line-height:1.6}
+  .hero__cta{display:flex;gap:13px;flex-wrap:wrap}
+
+  /* reservation card */
+  .resv{background:var(--surface);color:var(--ink);border-radius:var(--radius-lg);padding:22px;
+    box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.6)}
+  .resv__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:12px}
+  .resv__head h3{font-family:var(--serif);font-size:26px;margin:0;font-weight:400;white-space:nowrap;line-height:1}
+  .resv__grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field--full{grid-column:1/-1}
+  .field label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  .field select,.field input{
+    font-family:var(--sans);font-size:14px;padding:11px 12px;border-radius:11px;border:1px solid var(--line);
+    background:var(--surface-2);color:var(--ink);appearance:none;width:100%;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%236f7a68' stroke-width='2'%3E%3Cpath d='M3 5l3 3 3-3'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right 12px center;
+  }
+  .field input{background-image:none}
+  .field select:focus,.field input:focus{outline:none;border-color:var(--accent)}
+  .resv__price{display:flex;align-items:center;justify-content:space-between;gap:14px;
+    margin:14px 0 14px;padding:13px 2px 0;border-top:1px solid var(--line)}
+  .resv__sel{display:flex;flex-direction:column;gap:3px;min-width:0}
+  .resv__sel-route{font-family:var(--sans);font-size:13px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .resv__sel-diff{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .resv__from{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+  .resv__from .v{font-family:var(--serif);font-size:19px;letter-spacing:0;text-transform:none;color:var(--ink);margin-left:4px}
+  [data-resv-submit].is-ok{background:#2f7b3a}
+
+  /* fleet */
+  .fleet-slider{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(290px,1fr);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:none}
+  .fleet-slider::-webkit-scrollbar{display:none}
+  .fleet-controls{display:flex;gap:8px}
+  .fleet-arrow{width:42px;height:42px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--forest-900);font-size:17px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+  .fleet-arrow:hover{background:var(--forest-900);color:#f4f3ea;border-color:var(--forest-900)}
+  .fleet-card{scroll-snap-align:start;position:relative;border-radius:var(--radius);overflow:hidden;min-height:360px;display:flex;flex-direction:column;justify-content:flex-end;color:#f4f3ea}
+  .fleet-card__feats{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}
+  .feat{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;padding:5px 10px;border:1px solid rgba(244,243,234,.34);border-radius:999px;color:rgba(244,243,234,.94)}
+  .fleet-card .ph{position:absolute;inset:0;border-radius:0}
+  .fleet-card::after{content:"";position:absolute;inset:0;z-index:2;
+    background:linear-gradient(180deg,rgba(16,29,21,0) 12%,rgba(16,29,21,.42) 42%,rgba(16,29,21,.86) 70%,rgba(16,29,21,.96) 100%)}
+  .fleet-card__body{position:relative;z-index:3;padding:24px}
+  .fleet-card__top{position:absolute;top:18px;left:18px;z-index:3}
+  .fleet-card h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+  .fleet-card p{font-size:13.5px;color:rgba(244,243,234,.92);margin:0 0 16px;max-width:30ch}
+  .fleet-card__foot{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .fleet-card__price{font-family:var(--serif);font-size:22px}
+
+  /* gallery */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .gallery .ph{aspect-ratio:3/4}
+  .gallery .ph:nth-child(2){aspect-ratio:3/4;margin-top:28px}
+  .gallery .ph:nth-child(3){margin-top:-10px}
+  .gallery .ph:nth-child(4){margin-top:18px}
+
+  @media(max-width:900px){
+    .hero__inner{grid-template-columns:1fr;align-items:start;padding:140px 0 60px}
+    .fleet-slider{grid-auto-columns:82%}
+    .gallery{grid-template-columns:1fr 1fr}
+    .gallery .ph{margin-top:0!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero" data-screen-label="Landing">
+  <div class="ph ph--river hero__bg"><span class="ph__tag">hero · river bow at dawn · 21:9</span></div>
+
+  <nav class="nav nav--over">
+    <div class="wrap nav__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__name">Asvėjos baidarių centras</span>
+        <span class="brand__sub">Žemaitijos regioninis parkas</span>
+      </a>
+      <ul class="nav__links">
+        <li><a href="index.html">Pradžia</a></li>
+        <li><a href="routes.html">Routes</a></li>
+        <li><a href="fleet.html">Fleet</a></li>
+        <li><a href="route.html">Route detail</a></li>
+      </ul>
+      <div class="nav__right">
+        <a class="btn btn--light btn--sm" href="#reserve">Book now</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap hero__inner">
+    <div>
+      <span class="hero__pill">◐ Open May–October · Žemaitija regional park</span>
+      <h1 class="display">Explore every<br>waterway</h1>
+      <p class="hero__lede">Guided and self-paced kayak journeys through the lakes, rivers and ancient pine forests of the Žemaitija regional park.</p>
+      <div class="hero__cta">
+        <a class="btn btn--light" href="#reserve">Reserve a kayak</a>
+        <a class="btn btn--ghost" href="routes.html" style="border-color:rgba(244,243,234,.4);color:#f4f3ea">View all routes →</a>
+      </div>
+    </div>
+
+    <!-- reservation card -->
+    <div class="resv" id="reserve" data-resv>
+      <div class="resv__head">
+        <h3>Quick reservation</h3>
+        <span class="tag tag--sage">Instant</span>
+      </div>
+      <form>
+        <div class="resv__grid">
+          <div class="field">
+            <label>Boat type</label>
+            <select name="boat">
+              <option value="kayak">Kayak</option>
+              <option value="canoe">Canoe</option>
+              <option value="raft">Raft</option>
+              <option value="paddleboard">Paddleboard</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>People</label>
+            <select name="people">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option><option>6</option><option>8</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label>Route</label>
+            <select name="route">
+              <option data-diff="Moderate">The Whispering Pines · 14 km · Moderate</option>
+              <option data-diff="Easy">The Morning Glass · 8 km · Easy</option>
+              <option data-diff="Hard">The Rapid Descent · 11 km · Hard</option>
+              <option data-diff="Easy">Golden Hour Glide · 6 km · Easy</option>
+            </select>
+          </div>
+          <div class="field field--full">
+            <label>Date</label>
+            <input type="date" name="date" value="2026-06-14">
+          </div>
+        </div>
+        <div class="resv__price">
+          <div class="resv__sel">
+            <span class="resv__sel-route" data-resv-note>Kayak · The Whispering Pines</span>
+            <span class="resv__sel-diff" data-resv-diff>Moderate</span>
+          </div>
+          <span class="resv__from">from <span class="v" data-resv-price>€25</span></span>
+        </div>
+        <button class="btn btn--primary btn--block" data-resv-submit type="submit">Check availability</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== POPULAR ROUTES ===================== -->
+<section class="section wrap" data-screen-label="Popular routes">
+  <div class="between" style="margin-bottom:36px">
+    <div>
+      <p class="eyebrow">Most popular</p>
+      <h2 class="display">Hand-picked journeys</h2>
+    </div>
+    <a class="btn btn--ghost btn--sm" href="routes.html">See all 12 routes →</a>
+  </div>
+
+  <div class="grid-3">
+    <a class="card route-card" href="route.html">
+      <div class="ph ph--sunset route-card__img" style="position:relative">
+        <div class="route-card__badges"><span class="tag tag--easy">Easy</span><span class="tag">8 km</span></div>
+        <button class="route-card__fav" data-fav><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg></button>
+        <div class="route-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="route-card__body">
+        <h3 class="route-card__title">The Morning Glass</h3>
+        <p class="route-card__sub">Lūšiai lake · still water</p>
+        <div class="route-card__foot">
+          <span class="meta">◷ 2–3 hrs</span><span class="meta">▲ Flat water</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card route-card" href="route.html">
+      <div class="ph ph--pine route-card__img" style="position:relative">
+        <div class="route-card__badges"><span class="tag tag--moderate">Moderate</span><span class="tag">14 km</span></div>
+        <button class="route-card__fav" data-fav><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg></button>
+        <div class="route-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="route-card__body">
+        <h3 class="route-card__title">The Whispering Pines</h3>
+        <p class="route-card__sub">Žeimena river · forest run</p>
+        <div class="route-card__foot">
+          <span class="meta">◷ 4–5 hrs</span><span class="meta">▲ Light current</span>
+        </div>
+      </div>
+    </a>
+
+    <a class="card route-card" href="route.html">
+      <div class="ph ph--river route-card__img" style="position:relative">
+        <div class="route-card__badges"><span class="tag tag--hard">Hard</span><span class="tag">11 km</span></div>
+        <button class="route-card__fav" data-fav><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg></button>
+        <div class="route-card__arrow"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
+      <div class="route-card__body">
+        <h3 class="route-card__title">The Rapid Descent</h3>
+        <p class="route-card__sub">Šventoji river · fast water</p>
+        <div class="route-card__foot">
+          <span class="meta">◷ 3–4 hrs</span><span class="meta">▲ Rapids II</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FLEET ===================== -->
+<section class="section" style="background:var(--paper-2)" data-screen-label="Our fleet">
+  <div class="wrap">
+    <div class="between" style="margin-bottom:34px">
+      <div>
+        <p class="eyebrow">Our fleet</p>
+        <h2 class="display">Boats for every crew</h2>
+        <p class="lede" style="margin-top:14px">With 200+ vessels we can put a whole company on the water at once.</p>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px">
+        <div class="fleet-controls">
+          <button class="fleet-arrow" aria-label="Previous" onclick="document.getElementById('fleetSlider').scrollBy({left:-330,behavior:'smooth'})">‹</button>
+          <button class="fleet-arrow" aria-label="Next" onclick="document.getElementById('fleetSlider').scrollBy({left:330,behavior:'smooth'})">›</button>
+        </div>
+        <a class="btn btn--dark btn--sm" href="fleet.html">Fleet &amp; pricing →</a>
+      </div>
+    </div>
+
+    <div class="fleet-slider" id="fleetSlider">
+      <div class="fleet-card">
+        <div class="ph ph--forest"><span class="ph__tag">kayak on shore</span></div>
+        <span class="tag tag--solid fleet-card__top">Most popular</span>
+        <div class="fleet-card__body">
+          <h3>Kayak rent</h3>
+          <p>High-performance kayaks for every crew, from solo paddlers to small groups.</p>
+          <div class="fleet-card__feats">
+            <span class="feat">One-person</span>
+            <span class="feat">Two-person</span>
+            <span class="feat">Three-person</span>
+          </div>
+          <a class="btn btn--light btn--sm" href="fleet.html">Book now</a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="ph ph--water"><span class="ph__tag">raft on river</span></div>
+        <div class="fleet-card__body">
+          <h3>Raft rent</h3>
+          <p>Roomy rafts for journeys and corporate retreats — paddles always included.</p>
+          <div class="fleet-card__feats">
+            <span class="feat">Up to 8 people</span>
+            <span class="feat">Paddles included</span>
+          </div>
+          <a class="btn btn--light btn--sm" href="fleet.html">Select</a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="ph ph--aerial"><span class="ph__tag">paddleboard aerial</span></div>
+        <div class="fleet-card__body">
+          <h3>SUP rent</h3>
+          <p>Stable stand-up paddleboards for a calm glide along the lake shoreline.</p>
+          <div class="fleet-card__feats">
+            <span class="feat">Paddles included</span>
+            <span class="feat">Life vests included</span>
+          </div>
+          <a class="btn btn--light btn--sm" href="fleet.html">Select</a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="ph ph--pine"><span class="ph__tag">mobile sauna · wood-fired</span></div>
+        <div class="fleet-card__body">
+          <h3>Mobile sauna</h3>
+          <p>Portable wood-fired sauna delivered lakeside — warm up between paddles.</p>
+          <div class="fleet-card__feats">
+            <span class="feat">4–8 people</span>
+            <span class="feat">Firewood included</span>
+          </div>
+          <a class="btn btn--light btn--sm" href="fleet.html">Enquire</a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="ph ph--mist"><span class="ph__tag">mobile hot tub · led-lit</span></div>
+        <div class="fleet-card__body">
+          <h3>Mobile hot tub</h3>
+          <p>A heated hot tub by the water with soft LED lighting for evening soaks.</p>
+          <div class="fleet-card__feats">
+            <span class="feat">6–8 people</span>
+            <span class="feat">LED lighting</span>
+          </div>
+          <a class="btn btn--light btn--sm" href="fleet.html">Enquire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="section wrap" data-screen-label="Adventures">
+  <div style="text-align:center;max-width:600px;margin:0 auto 44px">
+    <p class="eyebrow eyebrow--center">Customer adventures</p>
+    <h2 class="display">Moments from the water</h2>
+    <p class="lede" style="margin:14px auto 0">Shared by paddlers across the Žemaitija lakes and rivers.</p>
+  </div>
+  <div class="gallery">
+    <div class="ph ph--sunset"><span class="ph__tag">paddler · golden hour</span></div>
+    <div class="ph ph--river"><span class="ph__tag">double kayak · reflection</span></div>
+    <div class="ph ph--pine"><span class="ph__tag">forest channel</span></div>
+    <div class="ph ph--mist"><span class="ph__tag">misty morning launch</span></div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="wrap footer__top">
+    <div class="footer__brand">
+      <span class="brand__name" style="font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase">Asvėjos baidarių centras</span>
+      <p>Adventure, tranquillity and profound stillness on the water of the Žemaitija regional park.</p>
+      <div class="socials">
+        <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3a4 4 0 0 0-4 4v2H7v3h3v6h3v-6h3l1-3h-4v-2a1 1 0 0 1 1-1z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer__col">
+      <h4>Connect with us</h4>
+      <ul>
+        <li><a href="tel:+37060000000">+370 600 00000</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#2a43444c456a4b595c4f40455904465e"><span class="__cf_email__" data-cfemail="345d5a525b74554742515e5b471a5840">[email&#160;protected]</span></a></li>
+        <li>Asvejų reg. parkas,<br>Paliepukai, Vilniaus r.</li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="routes.html">All routes</a></li>
+        <li><a href="fleet.html">Fleet & pricing</a></li>
+        <li><a href="route.html">Route details</a></li>
+        <li><a href="#reserve">Reservations</a></li>
+      </ul>
+    </div>
+    <div class="footer__col">
+      <h4>Find our base</h4>
+      <div class="ph ph--map footer__map"><span class="ph__tag">map · launch point pin</span></div>
+    </div>
+  </div>
+  <div class="wrap footer__bar">
+    <p>© <span data-year></span> Asvėjos baidarių centras · All rights reserved</p>
+    <nav>
+      <a href="#">Privacy policy</a><a href="#">Terms of service</a><a href="#">Cookie policy</a>
+    </nav>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="shared.js"></script>
+</body>
+</html>
