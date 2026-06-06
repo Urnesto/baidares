@@ -29,7 +29,7 @@ export interface Route {
   difficulty: RouteDifficulty;
   distanceKm: number;
   duration: string;
-  terrain: string;
+  route: string;
   river: string;
   image: RouteImage;
   price: number;

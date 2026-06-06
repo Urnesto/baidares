@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { LangToggle } from "./LangToggle";
+import { useTranslations } from "next-intl";
 
 interface MobileNavProps {
   overlay?: boolean;
@@ -11,6 +12,7 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ overlay, active, links }: MobileNavProps) {
+  const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -54,7 +56,7 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
           )} />
         </span>
         <span className="font-mono text-[0.625rem] tracking-[0.14em] uppercase leading-none">
-          {open ? "Close" : "Menu"}
+          {open ? "✕" : "Menu"}
         </span>
       </button>
 
@@ -98,7 +100,7 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
                 Asvėjos baidarių centras
               </span>
               <span className="font-sans text-[0.625rem] tracking-[0.16em] uppercase text-cream/50">
-                Žemaitijos regioninis parkas
+                Regioninis parkas · Lietuva
               </span>
             </a>
             <button
@@ -159,7 +161,7 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
               onClick={() => setOpen(false)}
               className="inline-flex items-center gap-2 font-semibold tracking-[0.01em] rounded-full bg-accent text-cream hover:bg-accent-hover transition-all duration-[250ms] py-[0.625rem] px-[1.25rem] text-[0.875rem]"
             >
-              Book now
+              {t("bookNow")}
               <svg width="0.875rem" height="0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>

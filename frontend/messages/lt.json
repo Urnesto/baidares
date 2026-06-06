@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "home": "Pradžia",
+    "routes": "Maršrutai",
+    "services": "Paslaugos",
+    "bookNow": "Rezervuoti",
+    "callNow": "Skambinti"
+  },
+  "home": {
+    "heroTitle": "Nepamirštami baidarių nuotykiai",
+    "heroSubtitle": "Vedami ir savarankiški baidarių žygiai per regioninio parko ežerus, upes ir senovinius pušynus.",
+    "heroReserve": "Rezervuoti baidarę",
+    "heroViewRoutes": "Visi maršrutai →",
+    "popularEyebrow": "Populiariausi",
+    "popularTitle": "Atrinktos kelionės",
+    "popularSeeAll": "Visi 12 maršrutų →",
+    "fleetEyebrow": "Mūsų Paslaugos",
+    "fleetTitle": "Valtys kiekvienai komandai",
+    "fleetDesc": "Daugiau nei 200 valčių, galime išplukdyti visą kompaniją vienu metu.",
+    "galleryEyebrow": "Klientų nuotykiai",
+    "galleryTitle": "Akimirkos nuo vandens",
+    "galleryDesc": "Prisiminimai, gimę ant vandens."
+  },
+  "routes": {
+    "eyebrow": "{count} maršrutai · 4 vandens keliai",
+    "title": "Nepamirštami baidarių nuotykiai",
+    "lede": "Atrask nepertraukiamą regioninio parko grožį. Nuo ramių ežerų persikėlimų iki vingiuotų miško upių — surask savo kitam nuotykiui tinkamą maršrutą.",
+    "metaTitle": "Visi maršrutai — Asvėjos baidarių centras",
+    "filterAll": "Visi",
+    "filterEasy": "Lengvas",
+    "filterModerate": "Vidutinis",
+    "filterHard": "Sunkus",
+    "filterShort": "Trumpas (< 7 km)",
+    "filterMid": "Vidutinis (7–13 km)",
+    "filterLong": "Ilgas (> 13 km)",
+    "difficultyLabel": "Sudėtingumas",
+    "distanceLabel": "Atstumas",
+    "noResults": "Nėra maršrutų pagal pasirinktus filtrus."
+  },
+  "route": {
+    "breadcrumbRoutes": "Maršrutai",
+    "statDistance": "Atstumas",
+    "statDifficulty": "Sudėtingumas",
+    "statDuration": "Trukmė",
+    "statWaterway": "Upe",
+    "sectionExperience": "Patirtis",
+    "sectionMap": "Maršruto žemėlapis",
+    "mapComingSoon": "Žemėlapis bus netrukus",
+    "sectionLandmarks": "Pagrindiniai objektai",
+    "pricePerPerson": "Viena baidarė",
+  
+    "reserveBtn": "Rezervuoti šį maršrutą",
+    "backBtn": "Visi maršrutai",
+    "moreOn": "Daugiau kitu maršrutų",
+    "allRoutes": "Visi maršrutai",
+    "openFullMap": "Atidaryti pilną žemėlapį ↗",
+    "mapCoords": "{lat}, {lng}",
+    "flat": "rami ir stiklinė, tinkama visiems lygiams",
+    "currentTerrain": "{terrain}, todėl šis maršrutas skirtas irkluotojams su patirtimi",
+    "terrainDesc": "Srovė yra {desc}. Smėlio kranteliai atsiranda reguliariais intervalais — puiku vidupelkei iškylai, plaukimui ar tiesiog dreifavimui po medžiais."
+  },
+  "fleet": {
+    "metaTitle": "Laivynas — Asvėjos baidarių centras",
+    "eyebrow": "Mūsų laivynas",
+    "title": "Valtys kiekvienai komandai",
+    "desc": "Daugiau nei 200 valčių vandens nuotykiams ir kranto poilsiui. Viskas, ko reikia puikiam žygiui.",
+    "onWaterTitle": "Ant vandens",
+    "shoreTitle": "Kranto patirtys",
+    "perDay": "/ diena",
+    "bookNow": "Rezervuoti",
+    "select": "Pasirinkti",
+    "enquire": "Teirautis",
+    "kayak": {
+      "title": "Baidarės",
+      "desc": "Aukštos klasės baidarės kiekvienai komandai — nuo pavienių irkluotojų iki mažų grupių.",
+      "features": ["Vienvietė", "Dvivietė", "Trivietė"],
+      "badge": "Populiariausia"
+    },
+    "raft": {
+      "title": "Plaustai",
+      "desc": "Erdvūs plaustai žygiams ir korporatyvinėms išvykoms — irklai visada įskaičiuoti.",
+      "features": ["Iki 8 žmonių", "Irklai įskaičiuoti"]
+    },
+    "sup": {
+      "title": "SUP lentos",
+      "desc": "Stabilios stovimos irklų lentos ramiam slydimui palei ežero krantą.",
+      "features": ["Irklai įskaičiuoti", "Gelbėjimosi liemenės įskaičiuotos"]
+    },
+    "hotTub": {
+      "title": "Mobilusis kubilų centras",
+      "desc": "Šildomas kubilų centras prie vandens su švelniu LED apšvietimu vakarinėms maudynėms.",
+      "features": ["6–8 žmonės", "LED apšvietimas"]
+    },
+    "sauna": {
+      "title": "Mobilusis pirties paviljonas",
+      "desc": "Nešiojama malkų pirties patalpa prie ežero krantinės — atšilkite tarp irklavimo.",
+      "features": ["4–8 žmonės", "Malkos įskaičiuotos"]
+    }
+  },
+  "footer": {
+    "tagline": "Nuotykiai, ramybė ir gili tyla ant regioninio parko vandens.",
+    "connectTitle": "Susisiekite",
+    "exploreTitle": "Naršykite",
+    "mapTitle": "Raskite mus",
+    "allRoutes": "Visi maršrutai",
+    "fleetPricing": "Laivynas ir kainos",
+    "reservations": "Rezervacijos",
+    "privacy": "Privatumo politika",
+    "terms": "Paslaugų sąlygos",
+    "cookies": "Slapukų politika",
+    "rights": "© {year} Asvėjos baidarių centras · Visos teisės saugomos"
+  },
+  "difficulty": {
+    "easy": "Lengvas",
+    "moderate": "Vidutinis",
+    "hard": "Sunkus"
+  },
+  "includes": {
+    "kayakPaddleVest": "Baidarė, irklas ir gelbėjimosi liemenė",
+    "transferPutIn": "Pervežimas iki įplaukimo vietos",
+    "waterproofMap": "Vandeniui atsparus maršruto žemėlapis",
+    "pickupTakeOut": "Paėmimas išplaukimo vietoje",
+    "safetyBriefing": "Saugumo instruktažas",
+    "experiencedGuide": "Patyręs gidas",
+    "guidedLaunch": "Palydimas įplaukimas",
+    "hotDrinkReturn": "Karštas gėrimas grįžus",
+    "safetyBriefingGuide": "Saugumo instruktažas ir gidas",
+    "packedLunch": "Pietūs pasiimti",
+    "emergencyKit": "Pirmosios pagalbos rinkinys",
+    "childrensVests": "Vaikiškos gelbėjimosi liemenės"
+  },
+  "reservation": {
+    "cardTitle": "Greita rezervacija",
+    "instantTag": "Momentinis",
+    "boatTypeLabel": "Valties tipas",
+    "peopleLabel": "Žmonių skaičius",
+    "routeLabel": "Maršrutas",
+    "dateLabel": "Data",
+    "checkAvailability": "Tikrinti prieinamumą",
+    "orderNow": "Užsakyti dabar →",
+    "fromPrice": "nuo",
+    "modalTitle": "Užbaigti užsakymą",
+    "modalSubtitle": "Patvirtinsime prieinamumą ir atsiųsime informaciją jūsų kontaktu.",
+    "emailLabel": "El. pašto adresas",
+    "phoneLabel": "Telefono numeris",
+    "contactLabel": "Pageidaujamas kontakto būdas",
+    "emailOption": "El. paštas",
+    "phoneOption": "Telefonas",
+    "sending": "Siunčiama…",
+    "confirmOrder": "Patvirtinti užsakymą",
+    "close": "Uždaryti",
+    "successTitle": "Užklausa išsiųsta!",
+    "successBody": "Susisieksime per jūsų pageidaujamą kontaktą per kelias valandas, kad patvirtintume rezervaciją."
+  }
+}

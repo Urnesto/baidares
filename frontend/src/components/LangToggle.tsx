@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { cn } from "@/lib/utils";
+import { useLocale } from "next-intl";
+import { useRouter, usePathname } from "next/navigation";
 
 interface LangToggleProps {
   overlay?: boolean;
@@ -9,7 +11,22 @@ interface LangToggleProps {
 }
 
 export function LangToggle({ overlay, className }: LangToggleProps) {
-  const [lang, setLang] = useState<"lt" | "en">("lt");
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  function switchLocale(next: "lt" | "en") {
+    if (next === locale) return;
+    // pathname includes the locale prefix e.g. "/lt/routes/slug" or "/routes/slug"
+    // Strip leading locale segment and prepend new one
+    const segments = pathname.split("/");
+    if (segments[1] === "lt" || segments[1] === "en") {
+      segments[1] = next;
+    } else {
+      segments.splice(1, 0, next);
+    }
+    router.push(segments.join("/") || "/");
+  }
 
   return (
     <div className={cn(
@@ -20,10 +37,10 @@ export function LangToggle({ overlay, className }: LangToggleProps) {
       {(["lt", "en"] as const).map((l) => (
         <button
           key={l}
-          onClick={() => setLang(l)}
+          onClick={() => switchLocale(l)}
           className={cn(
             "font-mono text-[0.625rem] tracking-[0.1em] uppercase px-[0.5rem] py-[0.25rem] rounded-[0.3125rem] transition-colors duration-150",
-            lang === l
+            locale === l
               ? overlay ? "bg-cream/20 text-cream" : "bg-forest-900 text-cream"
               : overlay ? "text-cream/50 hover:text-cream/80" : "text-muted hover:text-ink"
           )}

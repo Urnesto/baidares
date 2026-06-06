@@ -1,5 +1,6 @@
 import React from "react";
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { Tag } from "@/components/ui/Tag";
@@ -30,33 +31,36 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: `${route.title} — Asvėjos baidarių centras` };
 }
 
-export default async function RouteDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function RouteDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
   const { slug } = await params;
   const route = getRouteBySlug(slug);
   if (!route) notFound();
 
   const related = getRelatedRoutes(route);
+  const t = await getTranslations("route");
+  const tIncludes = await getTranslations("includes");
+  const tDiff = await getTranslations("difficulty");
+
+  // const terrainIsFlat = route.terrain.toLowerCase() === "flat";
+  // const terrainDesc = terrainIsFlat
+  //   ? t("flat")
+  //   : t("currentTerrain", { terrain: route.terrain });
 
   return (
     <>
       {/* Hero */}
       <div className="relative min-h-[32.5rem] flex flex-col overflow-hidden text-cream">
-        {/* Background */}
         <div className="absolute inset-0" style={{ background: heroBgs[route.image] ?? heroBgs.forest }} />
-        {/* Gradient overlay */}
         <div
           className="absolute inset-0 z-[2]"
           style={{ background: "linear-gradient(180deg,rgba(16,29,21,.18) 0%,rgba(16,29,21,.22) 40%,rgba(16,29,21,.82) 100%)" }}
         />
-        {/* Nav */}
         <div className="relative z-10">
           <Nav overlay active="routes" />
         </div>
-        {/* Content */}
         <div className="relative z-[3] mt-auto max-w-content mx-auto px-8 pb-[3.5rem] pt-6 w-full">
-          {/* Breadcrumb */}
           <nav className="flex gap-2 items-center font-mono text-[0.6875rem] tracking-[0.08em] text-cream/70 mb-3">
-            <a href="/routes" className="hover:text-cream transition-colors">Routes</a>
+            <a href="/routes" className="hover:text-cream transition-colors">{t("breadcrumbRoutes")}</a>
             <span>/</span>
             <span className="text-cream/90">{route.title}</span>
           </nav>
@@ -70,7 +74,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
         </div>
       </div>
 
-      {/* Stats bar — negative margin to float over hero */}
+      {/* Stats bar */}
       <div className="max-w-content mx-auto px-8 -mt-11 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 bg-surface rounded-[1.125rem] border border-[var(--line)] shadow-sm overflow-hidden">
           {[
@@ -80,7 +84,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
                   <circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3v18" />
                 </svg>
               ),
-              label: "Distance",
+              label: t("statDistance"),
               value: `${route.distanceKm} km`,
             },
             {
@@ -89,7 +93,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
                   <path d="M3 19l6-9 4 6 3-4 5 7z" />
                 </svg>
               ),
-              label: "Difficulty",
+              label: t("statDifficulty"),
               value: route.difficulty.charAt(0).toUpperCase() + route.difficulty.slice(1),
             },
             {
@@ -98,7 +102,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
                   <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
                 </svg>
               ),
-              label: "Duration",
+              label: t("statDuration"),
               value: route.duration,
             },
             {
@@ -107,7 +111,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
                   <path d="M4 8c3 0 3 2 6 2s3-2 6-2 3 2 4 2M4 14c3 0 3 2 6 2s3-2 6-2 3 2 4 2" />
                 </svg>
               ),
-              label: "Waterway",
+              label: t("statWaterway"),
               value: route.river,
             },
           ].map((stat, i) => (
@@ -126,33 +130,27 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       <section className="max-w-content mx-auto px-8 py-14 grid grid-cols-1 lg:grid-cols-[1.6fr_0.9fr] gap-14 items-start">
         {/* Prose */}
         <div className="flex flex-col gap-10">
-          {/* Experience */}
           <div>
-            <h2 className="font-serif text-[1.75rem] m-0 mb-4">The experience</h2>
+            <h2 className="font-serif text-[1.75rem] m-0 mb-4">{t("sectionExperience")}</h2>
             <p className="text-ink-soft leading-[1.7] m-0 mb-[1.125rem]">{route.description}</p>
-            <p className="text-ink-soft leading-[1.7] m-0">
-              The current is {route.terrain.toLowerCase() === "flat" ? "calm and glassy, perfect for all ability levels" : `${route.terrain.toLowerCase()}, making this a route for paddlers with some experience`}. Sandy banks appear at regular intervals — perfect for a mid-river picnic, a swim, or simply drifting beneath the trees.
-            </p>
+            {/* <p className="text-ink-soft leading-[1.7] m-0">
+              {t("terrainDesc", { desc: terrainDesc })}
+            </p> */}
           </div>
 
-          {/* Map */}
           <div>
-            <h2 className="font-serif text-[1.75rem] m-0 mb-4">Route map</h2>
+            <h2 className="font-serif text-[1.75rem] m-0 mb-4">{t("sectionMap")}</h2>
             {route.map ? (
-              <RouteMap
-                title={route.title}
-                mapData={route.map}
-              />
+              <RouteMap title={route.title} mapData={route.map} />
             ) : (
               <div className="border border-[var(--line)] rounded-[1.125rem] overflow-hidden bg-surface-2 flex items-center justify-center py-10">
-                <p className="font-mono text-[0.75rem] text-muted tracking-[0.08em]">Map coming soon</p>
+                <p className="font-mono text-[0.75rem] text-muted tracking-[0.08em]">{t("mapComingSoon")}</p>
               </div>
             )}
           </div>
 
-          {/* Landmarks */}
           <div>
-            <h2 className="font-serif text-[1.75rem] m-0 mb-4">Key landmarks</h2>
+            <h2 className="font-serif text-[1.75rem] m-0 mb-4">{t("sectionLandmarks")}</h2>
             <div className="flex flex-col gap-3.5">
               {route.landmarks.map((lm) => (
                 <div key={lm.num} className="flex gap-3.5 p-[1.125rem] border border-[var(--line)] rounded-[0.75rem] bg-surface">
@@ -173,10 +171,10 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
         <aside>
           <div className="sticky top-6 border border-[var(--line)] rounded-[1.125rem] bg-surface shadow-sm overflow-hidden">
             <div className="px-[1.375rem] pt-[1.375rem] pb-[1.125rem] border-b border-[var(--line)]">
-              <p className="font-mono text-[0.6875rem] tracking-[0.08em] uppercase text-muted m-0 mb-2">Per person · kayak included</p>
+              <p className="font-mono text-[0.6875rem] tracking-[0.08em] uppercase text-muted m-0 mb-2">{t("pricePerPerson")}</p>
               <div className="flex items-baseline gap-1.5">
                 <span className="font-serif text-[2.125rem] leading-none text-ink">€{route.price}</span>
-                <span className="text-[0.8125rem] text-muted">/ paddler</span>
+              
               </div>
             </div>
             <div className="px-[1.375rem] py-5 flex flex-col gap-[0.8125rem]">
@@ -185,15 +183,15 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
                   <svg className="flex-shrink-0 text-accent" width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12l4 4L19 6" />
                   </svg>
-                  {item}
+                  {tIncludes(item as Parameters<typeof tIncludes>[0])}
                 </div>
               ))}
               <div className="flex flex-col gap-2.5 mt-1.5">
                 <Button variant="primary" size="sm" as="a" href="/#reserve" className="w-full justify-center">
-                  Reserve this route
+                  {t("reserveBtn")}
                 </Button>
                 <Button variant="ghost" size="sm" as="a" href="/routes" className="w-full justify-center">
-                  Back to all routes
+                  {t("backBtn")}
                 </Button>
               </div>
             </div>
@@ -205,9 +203,9 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
       {related.length > 0 && (
         <section className="max-w-content mx-auto px-8 pt-4 pb-[5.25rem]">
           <div className="flex items-center justify-between mb-7">
-            <h2 className="font-serif text-[2rem] m-0">More on the {route.river}</h2>
+            <h2 className="font-serif text-[2rem] m-0">{t("moreOn")}</h2>
             <a href="/routes" className="font-mono text-[0.75rem] tracking-[0.08em] uppercase text-ink-soft hover:text-ink transition-colors inline-flex items-center gap-1.5">
-              All routes
+              {t("allRoutes")}
               <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
@@ -218,11 +216,13 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
               <RouteCard
                 key={r.slug}
                 title={r.title}
+                river={r.river}
                 subtitle={r.subtitle}
                 difficulty={r.difficulty}
+                difficultyLabel={tDiff(r.difficulty)}
                 distance={`${r.distanceKm} km`}
                 duration={r.duration}
-                terrain={r.terrain}
+                route={r.route}
                 image={r.image}
                 href={`/routes/${r.slug}`}
               />

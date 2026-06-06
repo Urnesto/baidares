@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
 
 export function ReservationCard() {
+  const t = useTranslations("reservation");
   const [submitted, setSubmitted] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [contactMethod, setContactMethod] = useState<"email" | "phone" | "whatsapp">("email");
+  const [contactMethod, setContactMethod] = useState<"email" | "phone">("email");
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
 
@@ -37,23 +39,23 @@ export function ReservationCard() {
     <>
       <div id="reserve" className="bg-white text-ink rounded-[1.625rem] p-[1.375rem] shadow-lg border border-white/60">
         <div className="flex items-center justify-between mb-4 gap-3">
-          <h3 className="font-serif text-[1.625rem] m-0 font-normal leading-none whitespace-nowrap">Quick reservation</h3>
-          <Tag variant="sage">Instant</Tag>
+          <h3 className="font-serif text-[1.625rem] m-0 font-normal leading-none whitespace-nowrap">{t("cardTitle")}</h3>
+          <Tag variant="sage">{t("instantTag")}</Tag>
         </div>
         <form onSubmit={handleCheckAvailability}>
           <div className="grid grid-cols-2 gap-[0.625rem]">
             <div className="flex flex-col gap-[0.3125rem]">
-              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">Boat type</label>
+              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("boatTypeLabel")}</label>
               <select name="boat" className="font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink appearance-none w-full focus:outline-none focus:border-accent">
                 <option>Kayak</option><option>Canoe</option><option>Raft</option><option>Paddleboard</option>
               </select>
             </div>
             <div className="flex flex-col gap-[0.3125rem]">
-              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">People</label>
+              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("peopleLabel")}</label>
               <input type="number" name="people" min={1} max={200} defaultValue={2} className="font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink w-full focus:outline-none focus:border-accent" />
             </div>
             <div className="col-span-2 flex flex-col gap-[0.3125rem]">
-              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">Route</label>
+              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("routeLabel")}</label>
               <select name="route" className="font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink appearance-none w-full focus:outline-none focus:border-accent">
                 <option>The Whispering Pines · 14 km · Moderate</option>
                 <option>The Morning Glass · 8 km · Easy</option>
@@ -62,7 +64,7 @@ export function ReservationCard() {
               </select>
             </div>
             <div className="col-span-2 flex flex-col gap-[0.3125rem]">
-              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">Date</label>
+              <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("dateLabel")}</label>
               <input type="date" name="date" defaultValue="2026-06-14" className="font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink w-full focus:outline-none focus:border-accent" />
             </div>
           </div>
@@ -72,11 +74,11 @@ export function ReservationCard() {
               <span className="font-mono text-[0.625rem] tracking-[0.09em] uppercase text-muted">Moderate</span>
             </div>
             <span className="font-mono text-[0.6875rem] tracking-[0.06em] uppercase text-muted whitespace-nowrap">
-              from <span className="font-serif text-[1.1875rem] text-ink tracking-normal normal-case ml-1">€25</span>
+              {t("fromPrice")} <span className="font-serif text-[1.1875rem] text-ink tracking-normal normal-case ml-1">€25</span>
             </span>
           </div>
           <Button variant="primary" block type="submit">
-            {submitted ? "Order now →" : "Check availability"}
+            {submitted ? t("orderNow") : t("checkAvailability")}
           </Button>
         </form>
       </div>
@@ -91,7 +93,7 @@ export function ReservationCard() {
             <button
               onClick={closeModal}
               className="absolute top-5 right-5 text-muted hover:text-ink transition-colors text-[1.25rem] leading-none"
-              aria-label="Close"
+              aria-label={t("close")}
             >
               ✕
             </button>
@@ -99,22 +101,22 @@ export function ReservationCard() {
             {done ? (
               <div className="text-center py-4">
                 <div className="text-[2.5rem] mb-3">🛶</div>
-                <h3 className="font-serif text-[1.5rem] font-normal m-0 mb-2">Request sent!</h3>
+                <h3 className="font-serif text-[1.5rem] font-normal m-0 mb-2">{t("successTitle")}</h3>
                 <p className="text-[0.9375rem] text-ink-soft leading-[1.6] m-0">
-                  We'll reach out via your preferred contact method within a few hours to confirm your booking.
+                  {t("successBody")}
                 </p>
                 <Button variant="primary" block className="mt-6" onClick={closeModal} type="button">
-                  Close
+                  {t("close")}
                 </Button>
               </div>
             ) : (
               <>
-                <h3 className="font-serif text-[1.5rem] font-normal m-0 mb-1">Complete your order</h3>
-                <p className="text-[0.875rem] text-ink-soft mb-5 m-0">We'll confirm availability and send details to your contact.</p>
+                <h3 className="font-serif text-[1.5rem] text-ink-soft font-normal m-0 mb-1">{t("modalTitle")}</h3>
+                <p className="text-[0.875rem] text-ink-soft mb-5 m-0">{t("modalSubtitle")}</p>
 
                 <form onSubmit={handleOrder} className="flex flex-col gap-[0.875rem]">
                   <div className="flex flex-col gap-[0.3125rem]">
-                    <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">Email address</label>
+                    <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("emailLabel")}</label>
                     <input
                       type="email"
                       required
@@ -124,7 +126,7 @@ export function ReservationCard() {
                   </div>
 
                   <div className="flex flex-col gap-[0.3125rem]">
-                    <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">Phone number</label>
+                    <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("phoneLabel")}</label>
                     <input
                       type="tel"
                       required
@@ -134,9 +136,9 @@ export function ReservationCard() {
                   </div>
 
                   <div className="flex flex-col gap-[0.5rem]">
-                    <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">Preferred contact</label>
+                    <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("contactLabel")}</label>
                     <div className="grid grid-cols-3 gap-[0.5rem]">
-                      {(["email", "phone", "whatsapp"] as const).map((method) => (
+                      {(["email", "phone"] as const).map((method) => (
                         <label
                           key={method}
                           className={`flex flex-col items-center gap-1 py-[0.6875rem] rounded-[0.6875rem] border cursor-pointer transition-all text-[0.8125rem] font-medium capitalize select-none ${
@@ -156,14 +158,14 @@ export function ReservationCard() {
                           <span className="text-[1.125rem]">
                             {method === "email" ? "✉️" : method === "phone" ? "📞" : "💬"}
                           </span>
-                          {method === "whatsapp" ? "WhatsApp" : method.charAt(0).toUpperCase() + method.slice(1)}
+                          {method === "email" ? t("emailOption") : method === "phone" ? t("phoneOption") : "WhatsApp"}
                         </label>
                       ))}
                     </div>
                   </div>
 
                   <Button variant="primary" block type="submit" className="mt-1">
-                    {sending ? "Sending…" : "Confirm order"}
+                    {sending ? t("sending") : t("confirmOrder")}
                   </Button>
                 </form>
               </>

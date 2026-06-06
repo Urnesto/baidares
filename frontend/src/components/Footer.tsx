@@ -1,6 +1,12 @@
+"use client";
+
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export function Footer() {
+  const t = useTranslations("footer");
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-forest-900 text-sage-200 mt-0">
       <div className="max-w-content mx-auto px-8">
@@ -11,7 +17,7 @@ export function Footer() {
               Asvėjos baidarių centras
             </span>
             <p className="text-sage-400 text-[0.875rem] max-w-[30ch] mt-4 mb-0">
-              Adventure, tranquillity and profound stillness on the water of the Žemaitija regional park.
+              {t("tagline")}
             </p>
             <div className="flex gap-[0.625rem] mt-[1.375rem]">
               <a href="#" aria-label="Instagram" className="w-9 h-9 rounded-full border border-white/15 grid place-items-center text-sage-300 hover:bg-white/10 hover:text-white transition-colors">
@@ -31,7 +37,7 @@ export function Footer() {
 
           {/* Connect */}
           <div>
-            <h4 className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-sage-400 mt-0 mb-4 font-medium">Connect with us</h4>
+            <h4 className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-sage-400 mt-0 mb-4 font-medium">{t("connectTitle")}</h4>
             <ul className="list-none m-0 p-0 flex flex-col gap-[0.6875rem]">
               <li><a href="tel:+37060000000" className="text-[0.875rem] text-sage-300 hover:text-white transition-colors">+370 600 00000</a></li>
               <li><a href="mailto:hello@baidares.lt" className="text-[0.875rem] text-sage-300 hover:text-white transition-colors">hello@baidares.lt</a></li>
@@ -41,9 +47,13 @@ export function Footer() {
 
           {/* Explore */}
           <div>
-            <h4 className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-sage-400 mt-0 mb-4 font-medium">Explore</h4>
+            <h4 className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-sage-400 mt-0 mb-4 font-medium">{t("exploreTitle")}</h4>
             <ul className="list-none m-0 p-0 flex flex-col gap-[0.6875rem]">
-              {[["All routes", "/routes"], ["Fleet & pricing", "/fleet"], ["Reservations", "/#reserve"]].map(([label, href]) => (
+              {([
+                [t("allRoutes"), "/routes"],
+                [t("fleetPricing"), "/fleet"],
+                [t("reservations"), "/#reserve"],
+              ] as [string, string][]).map(([label, href]) => (
                 <li key={label}>
                   <a href={href} className="text-[0.875rem] text-sage-300 hover:text-white transition-colors">{label}</a>
                 </li>
@@ -53,17 +63,17 @@ export function Footer() {
 
           {/* Map */}
           <div>
-            <h4 className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-sage-400 mt-0 mb-4 font-medium">Find our base</h4>
+            <h4 className="font-mono text-[0.6875rem] tracking-[0.16em] uppercase text-sage-400 mt-0 mb-4 font-medium">{t("mapTitle")}</h4>
             <div className="rounded-sm border border-white/10" style={{ aspectRatio: "16/10", background: "linear-gradient(150deg,#37503c 0%,#2c4632 60%,#243a2b 100%)" }} />
           </div>
         </div>
 
         <div className="border-t border-white/10 py-[1.375rem] flex justify-between items-center gap-4 flex-wrap">
           <p className="m-0 text-[0.75rem] text-sage-400 font-mono tracking-[0.04em]">
-            © {new Date().getFullYear()} Asvėjos baidarių centras · All rights reserved
+            {t("rights", { year })}
           </p>
           <nav className="flex gap-[1.375rem]">
-            {["Privacy policy", "Terms of service", "Cookie policy"].map((label) => (
+            {([t("privacy"), t("terms"), t("cookies")] as string[]).map((label) => (
               <a key={label} href="#" className="text-[0.75rem] text-sage-400 hover:text-white transition-colors">{label}</a>
             ))}
           </nav>

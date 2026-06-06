@@ -1,0 +1,154 @@
+{
+  "nav": {
+    "home": "Home",
+    "routes": "Routes",
+    "services": "Services",
+    "bookNow": "Book now",
+    "callNow": "Call now"
+  },
+  "home": {
+    "heroTitle": "Unforgettable Kayaking Adventures",
+    "heroSubtitle": "Guided and self-paced kayak journeys through the lakes, rivers and ancient pine forests of the regional park.",
+    "heroReserve": "Reserve a kayak",
+    "heroViewRoutes": "View all routes →",
+    "popularEyebrow": "Most popular",
+    "popularTitle": "Hand-picked journeys",
+    "popularSeeAll": "See all 12 routes →",
+    "fleetEyebrow": "Our services",
+    "fleetTitle": "Boats for every crew",
+    "fleetDesc": "With 200+ vessels we can put a whole company on the water at once.",
+    "galleryEyebrow": "Customer adventures",
+    "galleryTitle": "Moments from the water",
+    "galleryDesc": "Memories born on the water."
+  },
+  "routes": {
+    "eyebrow": "{count} routes · 4 waterways",
+    "title": "Unforgettable Kayaking Adventures",
+    "lede": "Discover the unhurried beauty of the regional park. From gentle lake crossings to winding forest rivers, find the perfect line for your next adventure.",
+    "metaTitle": "All Routes — Asvėjos baidarių centras",
+    "filterAll": "All",
+    "filterEasy": "Easy",
+    "filterModerate": "Moderate",
+    "filterHard": "Hard",
+    "filterShort": "Short (< 7 km)",
+    "filterMid": "Mid (7–13 km)",
+    "filterLong": "Long (> 13 km)",
+    "difficultyLabel": "Difficulty",
+    "distanceLabel": "Distance",
+    "noResults": "No routes match the selected filters."
+  },
+  "route": {
+    "breadcrumbRoutes": "Routes",
+    "statDistance": "Distance",
+    "statDifficulty": "Difficulty",
+    "statDuration": "Duration",
+    "statWaterway": "River",
+    "sectionExperience": "The experience",
+    "sectionMap": "Route map",
+    "mapComingSoon": "Map coming soon",
+    "sectionLandmarks": "Key landmarks",
+    "pricePerPerson": "One kayak",
+    "reserveBtn": "Reserve this route",
+    "backBtn": "Back to all routes",
+    "moreOn": "More other routes",
+    "allRoutes": "All routes",
+    "openFullMap": "Open full map ↗",
+    "mapCoords": "{lat}, {lng}",
+    "flat": "calm and glassy, perfect for all ability levels",
+    "currentTerrain": "{terrain}, making this a route for paddlers with some experience",
+    "terrainDesc": "The current is {desc}. Sandy banks appear at regular intervals — perfect for a mid-river picnic, a swim, or simply drifting beneath the trees."
+  },
+  "fleet": {
+    "metaTitle": "Fleet — Asvėjos baidarių centras",
+    "eyebrow": "Our fleet",
+    "title": "Boats for every crew",
+    "desc": "200+ vessels for water adventures and shore relaxation. Everything you need for a great trip.",
+    "onWaterTitle": "On the water",
+    "shoreTitle": "Shore experiences",
+    "perDay": "/ day",
+    "bookNow": "Book now",
+    "select": "Select",
+    "enquire": "Enquire",
+    "kayak": {
+      "title": "Kayak rent",
+      "desc": "High-performance kayaks for every crew, from solo paddlers to small groups.",
+      "features": ["One-person", "Two-person", "Three-person"],
+      "badge": "Most popular"
+    },
+    "raft": {
+      "title": "Raft rent",
+      "desc": "Roomy rafts for journeys and corporate retreats — paddles always included.",
+      "features": ["Up to 8 people", "Paddles included"]
+    },
+    "sup": {
+      "title": "SUP rent",
+      "desc": "Stable stand-up paddleboards for a calm glide along the lake shoreline.",
+      "features": ["Paddles included", "Life vests included"]
+    },
+    "hotTub": {
+      "title": "Mobile hot tub",
+      "desc": "A heated hot tub by the water with soft LED lighting for evening soaks.",
+      "features": ["6–8 people", "LED lighting"]
+    },
+    "sauna": {
+      "title": "Mobile sauna",
+      "desc": "Portable wood-fired sauna delivered lakeside — warm up between paddles.",
+      "features": ["4–8 people", "Firewood included"]
+    }
+  },
+  "footer": {
+    "tagline": "Adventure, tranquillity and profound stillness on the water of the regional park.",
+    "connectTitle": "Connect with us",
+    "exploreTitle": "Explore",
+    "mapTitle": "Find our base",
+    "allRoutes": "All routes",
+    "fleetPricing": "Fleet & pricing",
+    "reservations": "Reservations",
+    "privacy": "Privacy policy",
+    "terms": "Terms of service",
+    "cookies": "Cookie policy",
+    "rights": "© {year} Asvėjos baidarių centras · All rights reserved"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "moderate": "Moderate",
+    "hard": "Hard"
+  },
+  "includes": {
+    "kayakPaddleVest": "Kayak, paddle & life vest",
+    "transferPutIn": "Transfer to put-in point",
+    "waterproofMap": "Waterproof route map",
+    "pickupTakeOut": "Pick-up at take-out",
+    "safetyBriefing": "Safety briefing",
+    "experiencedGuide": "Experienced guide",
+    "guidedLaunch": "Guided launch",
+    "hotDrinkReturn": "Hot drink at return",
+    "safetyBriefingGuide": "Safety briefing & guide",
+    "packedLunch": "Packed lunch",
+    "emergencyKit": "Emergency kit",
+    "childrensVests": "Children's life vests available"
+  },
+  "reservation": {
+    "cardTitle": "Quick reservation",
+    "instantTag": "Instant",
+    "boatTypeLabel": "Boat type",
+    "peopleLabel": "People number",
+    "routeLabel": "Route",
+    "dateLabel": "Date",
+    "checkAvailability": "Check availability",
+    "orderNow": "Order now →",
+    "fromPrice": "from",
+    "modalTitle": "Complete your order",
+    "modalSubtitle": "We'll confirm availability and send details to your contact.",
+    "emailLabel": "Email address",
+    "phoneLabel": "Phone number",
+    "contactLabel": "Preferred contact method",
+    "emailOption": "Email",
+    "phoneOption": "Phone",
+    "sending": "Sending…",
+    "confirmOrder": "Confirm order",
+    "close": "Close",
+    "successTitle": "Request sent!",
+    "successBody": "We'll reach out via your preferred contact method within a few hours to confirm your booking."
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { RouteCard } from "./RouteCard";
 import type { Route, RouteDifficulty } from "@/types";
 
@@ -32,6 +33,7 @@ interface RoutesGridProps {
 }
 
 export function RoutesGrid({ routes }: RoutesGridProps) {
+  const tDiff = useTranslations("difficulty");
   const [diff, setDiff] = useState<DiffFilter>("all");
   const [len, setLen] = useState<LenFilter>("all");
 
@@ -92,11 +94,13 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
               <RouteCard
                 key={r.slug}
                 title={r.title}
+                river={r.river}
                 subtitle={r.subtitle}
                 difficulty={r.difficulty}
+                difficultyLabel={tDiff(r.difficulty)}
                 distance={`${r.distanceKm} km`}
                 duration={r.duration}
-                terrain={r.terrain}
+                route={r.route}
                 image={r.image}
                 href={`/routes/${r.slug}`}
               />

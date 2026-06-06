@@ -1,6 +1,6 @@
 import React from "react";
-import { Tag } from "./ui/Tag";
 import { cn } from "@/lib/utils";
+import { Tag } from "./ui/Tag";
 
 type Difficulty = "easy" | "moderate" | "hard";
 
@@ -17,16 +17,20 @@ const bgImages: Record<string, string> = {
 
 interface RouteCardProps {
   title: string;
+  river?: string;
   subtitle: string;
   difficulty: Difficulty;
+  difficultyLabel?: string;
   distance: string;
   duration: string;
-  terrain: string;
+  route: string;
   image?: keyof typeof bgImages;
   href?: string;
 }
 
-export function RouteCard({ title, subtitle, difficulty, distance, duration, terrain, image = "river", href = "/routes/1" }: RouteCardProps) {
+export function RouteCard({ title, river, subtitle, difficulty, difficultyLabel, distance, duration, route, image = "river", href = "/routes/1" }: RouteCardProps) {
+  const location = subtitle.split("·")[0].trim();
+
   return (
     <a
       href={href}
@@ -39,8 +43,8 @@ export function RouteCard({ title, subtitle, difficulty, distance, duration, ter
       <div className="relative" style={{ aspectRatio: "4/3" }}>
         <div className="absolute inset-0" style={{ background: bgImages[image] }} />
         {/* Badges */}
-        <div className="absolute top-3 left-3 z-10 flex gap-[0.375rem]">
-          <Tag variant={difficulty}>{difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</Tag>
+        <div className="absolute top-3 left-3 z-10 flex gap-1.5">
+          <Tag variant={difficulty}>{difficultyLabel ?? difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</Tag>
           <Tag>{distance}</Tag>
         </div>
         {/* Arrow */}
@@ -53,11 +57,21 @@ export function RouteCard({ title, subtitle, difficulty, distance, duration, ter
 
       {/* Body */}
       <div className="px-[1.125rem] pt-[1.125rem] pb-5">
-        <h3 className="font-serif text-[1.5625rem] m-0 mb-1 leading-[1.05]">{title}</h3>
-        <p className="text-[0.8125rem] text-muted m-0 mb-3">{subtitle}</p>
+        <h3 className="font-serif text-[1.5625rem] m-0 mb-1 leading-[1.05]">{river ?? title}</h3>
+        <p className="text-[0.8125rem] text-muted m-0 mb-3">{location}</p>
         <div className="flex gap-[0.875rem] flex-wrap pt-3 border-t border-[var(--line-soft)]">
-          <span className="font-mono text-[0.6875rem] tracking-[0.04em] text-muted inline-flex items-center gap-[0.375rem]">◷ {duration}</span>
-          <span className="font-mono text-[0.6875rem] tracking-[0.04em] text-muted inline-flex items-center gap-[0.375rem]">▲ {terrain}</span>
+          <span className="font-mono text-[0.6875rem] tracking-[0.04em] text-muted inline-flex items-center gap-[0.375rem]">
+            <svg width="0.75rem" height="0.75rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            {duration}
+          </span>
+          <span className="font-mono text-[0.6875rem] tracking-[0.04em] text-muted inline-flex items-center gap-[0.375rem]">
+            <svg width="0.75rem" height="0.75rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 8c3 0 3 2 6 2s3-2 6-2 3 2 4 2M4 14c3 0 3 2 6 2s3-2 6-2 3 2 4 2"/></svg>
+            {route}
+          </span>
+          {/* <span className="font-mono text-[0.6875rem] tracking-[0.04em] text-muted inline-flex items-center gap-[0.375rem]">
+            <svg width="0.75rem" height="0.75rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18"/></svg>
+            {distance}
+          </span> */}
         </div>
       </div>
     </a>
