@@ -8,6 +8,10 @@ import { routing } from "@/i18n/routing";
 export const metadata: Metadata = {
   title: "Asvėjos baidarių centras",
   description: "Guided and self-paced kayak journeys through the regional park lakes and rivers.",
+  icons: {
+    icon: "/images/logo.webp",
+    apple: "/images/logo.webp",
+  },
 };
 
 export function generateStaticParams() {

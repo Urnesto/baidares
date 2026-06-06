@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { LangToggle } from "./LangToggle";
 import { useTranslations } from "next-intl";
+import { Button } from "./ui/Button";
 
 interface MobileNavProps {
   overlay?: boolean;
@@ -95,13 +96,12 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
 
           {/* Top bar — brand + close */}
           <div className="relative z-10 flex items-center justify-between px-6 h-[4.625rem] flex-shrink-0 border-b border-cream/10">
-            <a href="/" onClick={() => setOpen(false)} className="flex flex-col leading-[1.05] gap-[0.125rem]">
-              <span className="font-mono text-[0.781rem] tracking-[0.18em] uppercase font-medium text-cream whitespace-nowrap">
-                Asvėjos baidarių centras
-              </span>
-              <span className="font-sans text-[0.625rem] tracking-[0.16em] uppercase text-cream/50">
-                Regioninis parkas · Lietuva
-              </span>
+            <a href="/" onClick={() => setOpen(false)} className="shrink-0">
+              <img
+                src="/images/logo.webp"
+                alt="Asvėjos baidarių centras"
+                className="h-9 w-auto object-contain brightness-0 invert"
+              />
             </a>
             <button
               aria-label="Close menu"
@@ -156,16 +156,8 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
             style={{ transitionDelay: mounted ? `${80 + links.length * 70}ms` : "0ms" }}
           >
             <LangToggle overlay />
-            <a
-              href="/#reserve"
-              onClick={() => setOpen(false)}
-              className="inline-flex items-center gap-2 font-semibold tracking-[0.01em] rounded-full bg-accent text-cream hover:bg-accent-hover transition-all duration-[250ms] py-[0.625rem] px-[1.25rem] text-[0.875rem]"
-            >
-              {t("bookNow")}
-              <svg width="0.875rem" height="0.875rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </a>
+             <Button variant="light" size="sm" as="a" href="tel:+37064112211">{t("callNow")}</Button>
+       
           </div>
         </div>
       )}
