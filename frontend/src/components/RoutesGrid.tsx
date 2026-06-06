@@ -46,7 +46,7 @@ export function RoutesGrid({ routes }: RoutesGridProps) {
   return (
     <>
       {/* Sticky toolbar */}
-      <div className="sticky top-0 z-30 bg-paper/95 backdrop-blur-sm border-b border-[var(--line)] py-[1.125rem]">
+      <div className=" top-0 z-30 bg-paper/95 backdrop-blur-sm border-b border-[var(--line)] py-[1.125rem]">
         <div className="max-w-content mx-auto px-8 flex items-center justify-between gap-5 flex-wrap">
           <div className="flex items-center gap-[0.625rem] flex-wrap">
             <span className="font-mono text-[0.656rem] tracking-[0.12em] uppercase text-muted">Difficulty</span>
