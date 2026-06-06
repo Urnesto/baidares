@@ -1,7 +1,11 @@
 import type { Route } from "@/types";
 
+// All routes share the demo My Maps embed — swap embedId per route once real maps are created
+const MAP_ID = "1v6eaiNOTZ4wuGoVlUBMxeDTKS-nU5I7f";
+
 export const routes: Route[] = [
   {
+    id: 1,
     slug: "the-morning-glass",
     title: "The Morning Glass",
     subtitle: "Lūšiai lake · still water",
@@ -20,8 +24,10 @@ export const routes: Route[] = [
       { num: 3, title: "Heron's Bay", description: "A shallow sheltered cove where grey herons fish at low tide — an ideal rest point before the final stretch." },
     ],
     relatedSlugs: ["golden-hour-glide", "emerald-banks", "misty-meander"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 2,
     slug: "the-whispering-pines",
     title: "The Whispering Pines",
     subtitle: "Žeimena river · forest run",
@@ -40,8 +46,10 @@ export const routes: Route[] = [
       { num: 3, title: "The Pine Gallery", description: "The route's quietest stretch, where the channel narrows and ancient pines lean in from both banks. Listen for woodpeckers." },
     ],
     relatedSlugs: ["misty-meander", "valley-serpent", "the-twilight-drift"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 3,  
     slug: "the-rapid-descent",
     title: "The Rapid Descent",
     subtitle: "Šventoji river · fast water",
@@ -60,8 +68,10 @@ export const routes: Route[] = [
       { num: 3, title: "Exit Gorge", description: "The final kilometre cuts through a narrow sandstone gorge before the river widens to calm water at the take-out." },
     ],
     relatedSlugs: ["the-canyon-run", "autumn-currents", "the-whispering-pines"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 4,
     slug: "the-hidden-canopy",
     title: "The Hidden Canopy",
     subtitle: "Dringis lake · sheltered bay",
@@ -79,8 +89,10 @@ export const routes: Route[] = [
       { num: 2, title: "Lily Pad Clearing", description: "A circular clearing carpeted in yellow water lilies in summer — a magical, completely still pool." },
     ],
     relatedSlugs: ["the-morning-glass", "golden-hour-glide", "the-clear-shallows"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 5,
     slug: "golden-hour-glide",
     title: "Golden Hour Glide",
     subtitle: "Asveja lake · evening paddle",
@@ -98,8 +110,10 @@ export const routes: Route[] = [
       { num: 2, title: "Bat Bay", description: "After dusk, hundreds of bats emerge over this sheltered cove — a memorable finale to the evening paddle." },
     ],
     relatedSlugs: ["the-morning-glass", "the-hidden-canopy", "emerald-banks"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 6,
     slug: "the-canyon-run",
     title: "The Canyon Run",
     subtitle: "Šventoji gorge · full day",
@@ -118,8 +132,10 @@ export const routes: Route[] = [
       { num: 3, title: "The Cathedral Pool", description: "A tranquil deep pool beneath overhanging cliff walls — the halfway rest point and a stunning lunch spot." },
     ],
     relatedSlugs: ["the-rapid-descent", "autumn-currents", "the-whispering-pines"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 7,
     slug: "misty-meander",
     title: "Misty Meander",
     subtitle: "Žeimena bend · dawn fog",
@@ -138,8 +154,10 @@ export const routes: Route[] = [
       { num: 3, title: "Pine Spit Picnic", description: "A long sandy spit beneath pines — ideal rest stop and often completely deserted on weekday mornings." },
     ],
     relatedSlugs: ["the-whispering-pines", "valley-serpent", "the-morning-glass"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 8,
     slug: "the-twilight-drift",
     title: "The Twilight Drift",
     subtitle: "Baluošas lake · island chain",
@@ -158,8 +176,10 @@ export const routes: Route[] = [
       { num: 3, title: "The Open Crossing", description: "A 2 km open-water crossing to the take-out shore. Check wind direction before committing — can be challenging." },
     ],
     relatedSlugs: ["emerald-banks", "the-whispering-pines", "misty-meander"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 9,
     slug: "the-clear-shallows",
     title: "The Clear Shallows",
     subtitle: "Almajas lake · family route",
@@ -177,8 +197,10 @@ export const routes: Route[] = [
       { num: 2, title: "Fish-Eye Point", description: "The clearest part of the lake, where the sandy bottom is visible at 4 metres depth on calm days." },
     ],
     relatedSlugs: ["the-hidden-canopy", "golden-hour-glide", "the-morning-glass"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 10,
     slug: "valley-serpent",
     title: "Valley Serpent",
     subtitle: "Žeimena upper · winding",
@@ -197,8 +219,10 @@ export const routes: Route[] = [
       { num: 3, title: "The Valley Floor", description: "A wide flat section where the river spreads across gravel bars — easy paddling and a natural halfway break." },
     ],
     relatedSlugs: ["the-whispering-pines", "misty-meander", "the-twilight-drift"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 11,
     slug: "emerald-banks",
     title: "Emerald Banks",
     subtitle: "Lūšiai shore · reed beds",
@@ -217,8 +241,10 @@ export const routes: Route[] = [
       { num: 3, title: "The Pine Promontory", description: "A forested headland with a natural bench made by tree roots — the best elevated view of the lake from water level." },
     ],
     relatedSlugs: ["the-morning-glass", "the-twilight-drift", "golden-hour-glide"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
   {
+    id: 12,
     slug: "autumn-currents",
     title: "Autumn Currents",
     subtitle: "Šventoji lower · swift",
@@ -237,6 +263,7 @@ export const routes: Route[] = [
       { num: 3, title: "Twin Falls", description: "Two parallel drops of about a metre each. Run simultaneously with a partner for the best experience." },
     ],
     relatedSlugs: ["the-canyon-run", "the-rapid-descent", "valley-serpent"],
+    map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
 ];
 

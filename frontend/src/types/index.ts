@@ -13,7 +13,15 @@ export interface Landmark {
   description: string;
 }
 
+export interface RouteMap {
+  embedId: string;
+  lat: number;
+  lng: number;
+  zoom: number;
+}
+
 export interface Route {
+  id: number;
   slug: string;
   title: string;
   subtitle: string;
@@ -28,6 +36,7 @@ export interface Route {
   includes: string[];
   landmarks: Landmark[];
   relatedSlugs: string[];
+  map?: RouteMap;
 }
 
 export type BoatType = "kayak" | "canoe" | "raft" | "paddleboard";

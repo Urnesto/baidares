@@ -6,6 +6,7 @@ import { Tag } from "@/components/ui/Tag";
 import { Button } from "@/components/ui/Button";
 import { RouteCard } from "@/components/RouteCard";
 import { getRouteBySlug, getRelatedRoutes, routes } from "@/mocks";
+import { RouteMap } from "@/components/RouteMap";
 
 const heroBgs: Record<string, string> = {
   river:  "url('https://images.unsplash.com/photo-1586699253884-e199770f63b9?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat, linear-gradient(180deg,#3a5246,#4a726b)",
@@ -137,35 +138,16 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
           {/* Map */}
           <div>
             <h2 className="font-serif text-[1.75rem] m-0 mb-4">Route map</h2>
-            <div className="border border-[var(--line)] rounded-[1.125rem] overflow-hidden bg-surface">
-              <div className="relative" style={{ aspectRatio: "16/9" }}>
-                <div
-                  className="absolute inset-0"
-                  style={{ background: "linear-gradient(150deg,#37503c 0%,#2c4632 60%,#243a2b 100%)" }}
-                />
-                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 600 340" preserveAspectRatio="none" fill="none">
-                  <path
-                    d="M70 60 C160 90 120 170 220 190 S400 210 440 280"
-                    stroke="#dfe9d4"
-                    strokeWidth="4"
-                    strokeLinecap="round"
-                    strokeDasharray="2 12"
-                  />
-                  <circle cx="70" cy="60" r="8" fill="#dfe9d4" />
-                  <circle cx="440" cy="280" r="8" fill="#2f6b3a" stroke="#dfe9d4" strokeWidth="3" />
-                </svg>
-                <div className="absolute top-3.5 left-3.5 z-10 flex flex-col gap-1.5">
-                  {["＋", "－"].map((sym) => (
-                    <div key={sym} className="w-[2.125rem] h-[2.125rem] rounded-[0.5625rem] border border-[var(--line)] bg-white/95 text-forest-800 text-lg grid place-items-center shadow-sm select-none">
-                      {sym}
-                    </div>
-                  ))}
-                </div>
-                <div className="absolute bottom-3 left-0 right-0 flex justify-center">
-                  <span className="font-mono text-[0.625rem] tracking-[0.08em] uppercase text-cream/60">Map · {route.title} · put-in &amp; take-out</span>
-                </div>
+            {route.map ? (
+              <RouteMap
+                title={route.title}
+                mapData={route.map}
+              />
+            ) : (
+              <div className="border border-[var(--line)] rounded-[1.125rem] overflow-hidden bg-surface-2 flex items-center justify-center py-10">
+                <p className="font-mono text-[0.75rem] text-muted tracking-[0.08em]">Map coming soon</p>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Landmarks */}
@@ -214,9 +196,6 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
                   Back to all routes
                 </Button>
               </div>
-              <p className="font-mono text-[0.625rem] tracking-[0.06em] text-center text-muted mt-1">
-                Free cancellation up to 48 hrs
-              </p>
             </div>
           </div>
         </aside>

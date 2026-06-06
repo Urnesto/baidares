@@ -1,6 +1,8 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/Button";
+import { LangToggle } from "./LangToggle";
+import { MobileNav } from "./MobileNav";
 
 interface NavProps {
   overlay?: boolean;
@@ -16,22 +18,16 @@ export function Nav({ overlay, active }: NavProps) {
 
   return (
     <nav className={cn("relative z-40", overlay && "absolute top-0 left-0 right-0")}>
-      <div className="max-w-content mx-auto px-8 flex items-center justify-between h-[4.625rem] gap-6">
-        <a href="/" className="flex flex-col leading-[1.05] gap-[0.125rem]">
-          <span className={cn(
-            "font-mono text-[0.781rem] tracking-[0.18em] uppercase font-medium whitespace-nowrap",
-            overlay ? "text-cream" : "text-ink"
-          )}>
-            Asvėjos baidarių centras
-          </span>
-          <span className={cn(
-            "text-[0.625rem] tracking-[0.16em] uppercase",
-            overlay ? "text-cream/60" : "text-muted"
-          )}>
-            Žemaitijos regioninis parkas
-          </span>
+      <div className="max-w-content mx-auto px-6 md:px-8 flex items-center justify-between h-[4.625rem] gap-6">
+        <a href="/" className="shrink-0">
+          <img
+            src="/images/logo.webp"
+            alt="Asvėjos baidarių centras"
+            className={cn("h-9 md:h-10 w-auto object-contain", overlay && "brightness-0 invert")}
+          />
         </a>
 
+        {/* Desktop links */}
         <ul className="hidden md:flex gap-[1.875rem] list-none m-0 p-0">
           {links.map((link) => (
             <li key={link.key}>
@@ -54,9 +50,14 @@ export function Nav({ overlay, active }: NavProps) {
           ))}
         </ul>
 
-        <div className="flex items-center gap-[0.875rem]">
+        {/* Desktop right */}
+        <div className="hidden md:flex items-center gap-[0.875rem]">
+          <LangToggle overlay={overlay} className="hidden md:flex" />
           <Button variant="light" size="sm" as="a" href="/#reserve">Book now</Button>
         </div>
+
+        {/* Mobile hamburger */}
+        <MobileNav overlay={overlay} active={active} links={links} />
       </div>
     </nav>
   );

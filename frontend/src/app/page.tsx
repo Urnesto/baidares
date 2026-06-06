@@ -24,12 +24,12 @@ export default function Home() {
 
         <Nav overlay active="home" />
 
-        <div className="relative z-[5] max-w-content mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1.25fr_0.9fr] gap-10 items-end pt-[10.625rem] pb-[4.375rem]">
+        <div className="relative z-[5] max-w-content mx-auto px-8 items-start grid grid-cols-1 lg:grid-cols-[1.25fr_0.9fr] gap-10 items-end pt-[10.625rem] pb-[4.375rem]">
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-[0.6875rem] tracking-[0.16em] uppercase bg-[rgba(244,243,234,0.14)] backdrop-blur-md px-[0.875rem] py-[0.4375rem] rounded-full mb-[1.375rem] border border-[rgba(244,243,234,0.18)] max-w-full overflow-hidden">
-              <span className="hidden sm:inline">◐ Kayaking · Rafting · SUP · Sauna</span>
-              <span className="sm:hidden">◐ Kayaking · Rafting · SUP</span>
-            </div>
+            {/* <div className="inline-flex items-center sm:hid  gap-2 font-mono text-[0.575rem] md:text-[0.6875rem] tracking-[0.16em] uppercase bg-[rgba(244,243,234,0.14)] backdrop-blur-md px-[0.875rem] py-[0.4375rem] rounded-full mb-[1.375rem] border border-[rgba(244,243,234,0.18)] max-w-full overflow-hidden">
+              <span className="">Baicares · Pirtis · Kubilas · Sauna</span>
+           
+            </div> */}
             <h1
               className="font-serif font-normal m-0 leading-[1.0] tracking-[-0.005em]"
               style={{ fontSize: "clamp(3rem, 6.4vw, 5.5rem)", textShadow: "0 2px 1.875rem rgba(0,0,0,.25)" }}
@@ -64,9 +64,9 @@ export default function Home() {
           <Button variant="ghost" size="sm" as="a" href="/routes">See all 12 routes →</Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <RouteCard title="The Morning Glass" subtitle="Lūšiai lake · still water" difficulty="easy" distance="8 km" duration="2–3 hrs" terrain="Flat water" image="sunset" />
-          <RouteCard title="The Whispering Pines" subtitle="Žeimena river · forest run" difficulty="moderate" distance="14 km" duration="4–5 hrs" terrain="Light current" image="pine" />
-          <RouteCard title="The Rapid Descent" subtitle="Šventoji river · fast water" difficulty="hard" distance="11 km" duration="3–4 hrs" terrain="Rapids II" image="river" />
+          <RouteCard title="The Morning Glass" subtitle="Lūšiai lake · still water" difficulty="easy" distance="8 km" duration="2–3 hrs" terrain="Flat water" image="sunset" href="/routes/the-morning-glass" />
+          <RouteCard title="The Whispering Pines" subtitle="Žeimena river · forest run" difficulty="moderate" distance="14 km" duration="4–5 hrs" terrain="Light current" image="pine" href="/routes/the-whispering-pines" />
+          <RouteCard title="The Rapid Descent" subtitle="Šventoji river · fast water" difficulty="hard" distance="11 km" duration="3–4 hrs" terrain="Rapids II" image="river" href="/routes/the-rapid-descent" />
         </div>
       </section>
 
