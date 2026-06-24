@@ -31,6 +31,7 @@ export interface Route {
   duration: string;
   route: string;
   river: string;
+  days: 1 | 2;
   image: RouteImage;
   price: number;
   includes: string[];

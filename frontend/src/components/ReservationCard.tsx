@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
+import { routes } from "@/mocks";
+
+const TARGET_RIVERS = ["Žeimena", "Dubinga", "Mera", "Lakaja", "Asveja"];
+
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 export function ReservationCard() {
   const t = useTranslations("reservation");
@@ -12,6 +17,22 @@ export function ReservationCard() {
   const [contactMethod, setContactMethod] = useState<"email" | "phone">("email");
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
+
+  const day1Routes = useMemo(
+    () => routes.filter((r) => TARGET_RIVERS.includes(r.river) && r.days === 1),
+    []
+  );
+  const day2Routes = useMemo(
+    () => routes.filter((r) => TARGET_RIVERS.includes(r.river) && r.days === 2),
+    []
+  );
+
+  const [selectedSlug, setSelectedSlug] = useState(day1Routes[0]?.slug ?? "");
+
+  const selectedRoute = useMemo(
+    () => routes.find((r) => r.slug === selectedSlug),
+    [selectedSlug]
+  );
 
   function handleCheckAvailability(e: React.FormEvent) {
     e.preventDefault();
@@ -56,11 +77,26 @@ export function ReservationCard() {
             </div>
             <div className="col-span-2 flex flex-col gap-[0.3125rem]">
               <label className="font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted">{t("routeLabel")}</label>
-              <select name="route" className="font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink appearance-none w-full focus:outline-none focus:border-accent">
-                <option>The Whispering Pines · 14 km · Moderate</option>
-                <option>The Morning Glass · 8 km · Easy</option>
-                <option>The Rapid Descent · 11 km · Hard</option>
-                <option>Golden Hour Glide · 6 km · Easy</option>
+              <select
+                name="route"
+                value={selectedSlug}
+                onChange={(e) => setSelectedSlug(e.target.value)}
+                className="font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink appearance-none w-full focus:outline-none focus:border-accent"
+              >
+                <optgroup label="— 1 Day —">
+                  {day1Routes.map((r) => (
+                    <option key={r.slug} value={r.slug}>
+                      {r.river} · {capitalize(r.difficulty)} · {r.distanceKm} km
+                    </option>
+                  ))}
+                </optgroup>
+                <optgroup label="— 2 Days —">
+                  {day2Routes.map((r) => (
+                    <option key={r.slug} value={r.slug}>
+                      {r.river} · {capitalize(r.difficulty)} · {r.distanceKm} km
+                    </option>
+                  ))}
+                </optgroup>
               </select>
             </div>
             <div className="col-span-2 flex flex-col gap-[0.3125rem]">
@@ -70,11 +106,15 @@ export function ReservationCard() {
           </div>
           <div className="flex items-center justify-between gap-[0.875rem] mt-[0.875rem] mb-[0.875rem] pt-[0.8125rem] border-t border-[var(--line)]">
             <div className="flex flex-col gap-[0.1875rem] min-w-0">
-              <span className="text-[0.8125rem] text-ink whitespace-nowrap overflow-hidden text-ellipsis">Kayak · The Whispering Pines</span>
-              <span className="font-mono text-[0.625rem] tracking-[0.09em] uppercase text-muted">Moderate</span>
+              <span className="text-[0.8125rem] text-ink whitespace-nowrap overflow-hidden text-ellipsis">
+                {selectedRoute ? `${selectedRoute.river} · ${selectedRoute.title}` : "Select a route"}
+              </span>
+              <span className="font-mono text-[0.625rem] tracking-[0.09em] uppercase text-muted">
+                {selectedRoute ? `${capitalize(selectedRoute.difficulty)} · ${selectedRoute.days === 2 ? "2 days" : "1 day"}` : ""}
+              </span>
             </div>
             <span className="font-mono text-[0.6875rem] tracking-[0.06em] uppercase text-muted whitespace-nowrap">
-              {t("fromPrice")} <span className="font-serif text-[1.1875rem] text-ink tracking-normal normal-case ml-1">€25</span>
+              {t("fromPrice")} <span className="font-serif text-[1.1875rem] text-ink tracking-normal normal-case ml-1">€{selectedRoute?.price ?? "—"}</span>
             </span>
           </div>
           <Button variant="primary" block type="submit">
@@ -156,9 +196,9 @@ export function ReservationCard() {
                             onChange={() => setContactMethod(method)}
                           />
                           <span className="text-[1.125rem]">
-                            {method === "email" ? "✉️" : method === "phone" ? "📞" : "💬"}
+                            {method === "email" ? "✉️" : "📞"}
                           </span>
-                          {method === "email" ? t("emailOption") : method === "phone" ? t("phoneOption") : "WhatsApp"}
+                          {method === "email" ? t("emailOption") : t("phoneOption")}
                         </label>
                       ))}
                     </div>

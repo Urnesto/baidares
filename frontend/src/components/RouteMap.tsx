@@ -46,10 +46,20 @@ export function RouteMap({ title, mapData }: RouteMapProps) {
       {/* Map iframe */}
       <div className="relative" style={{ aspectRatio: "16/9" }}>
         {!loaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-forest-900 via-forest-800 to-forest-700 flex items-center justify-center z-10">
-            <div className="flex flex-col items-center gap-3">
-              <div className="w-8 h-8 rounded-full border-2 border-cream/20 border-t-cream/80 animate-spin" />
-              <span className="font-mono text-[0.625rem] tracking-[0.1em] uppercase text-cream/50">Loading map…</span>
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            {/* Static map preview image */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`https://staticmap.openstreetmap.de/staticmap.php?center=${mapData.lat},${mapData.lng}&zoom=${mapData.zoom}&size=800x450`}
+              alt=""
+              className="w-full h-full object-cover"
+            />
+            {/* Overlay with spinner */}
+            <div className="absolute inset-0 bg-forest-900/50 flex items-center justify-center backdrop-blur-[2px]">
+              <div className="flex flex-col items-center gap-3">
+                <div className="w-8 h-8 rounded-full border-2 border-cream/20 border-t-cream/80 animate-spin" />
+                <span className="font-mono text-[0.625rem] tracking-[0.1em] uppercase text-cream/60">Loading map…</span>
+              </div>
             </div>
           </div>
         )}
