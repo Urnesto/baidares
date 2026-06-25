@@ -152,6 +152,16 @@
     "emergencyKit": "Apteczka",
     "childrensVests": "Kamizelki dla dzieci dostępne"
   },
+  "notFound": {
+    "badge": "Zgubieni na wodzie",
+    "title": "Ta strona odpłynęła",
+    "titleEm": "poza mapę",
+    "body": "Wygląda na to, że dotarłeś na nieznane wody. Szukana strona nie istnieje — ale rzeka wciąż czeka.",
+    "back": "← Wróć do strony głównej",
+    "reserve": "Zarezerwuj kajak",
+    "help": "Potrzebujesz pomocy?",
+    "contact": "Skontaktuj się"
+  },
   "reservation": {
     "cardTitle": "Szybka rezerwacja",
     "instantTag": "Natychmiastowa",

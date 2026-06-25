@@ -152,6 +152,16 @@
     "emergencyKit": "Emergency kit",
     "childrensVests": "Children's life vests available"
   },
+  "notFound": {
+    "badge": "Lost on the water",
+    "title": "This page paddled",
+    "titleEm": "off the map",
+    "body": "Looks like you've drifted into uncharted waters. The page you're looking for doesn't exist — but the river is still waiting.",
+    "back": "← Back to home",
+    "reserve": "Reserve a kayak",
+    "help": "Need help?",
+    "contact": "Contact us"
+  },
   "reservation": {
     "cardTitle": "Quick reservation",
     "instantTag": "Instant",

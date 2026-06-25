@@ -150,6 +150,16 @@
     "safetyBriefingGuide": "Saugumo instruktažas",
     "childrensVests": "Vaikiškos gelbėjimosi liemenės"
   },
+  "notFound": {
+    "badge": "Pasiklydę vandenyje",
+    "title": "Šis puslapis nuplaukė",
+    "titleEm": "už žemėlapio ribų",
+    "body": "Atrodo, kad atplaukėte į nežinomus vandenis. Ieškomas puslapis neegzistuoja — bet upė vis dar laukia.",
+    "back": "← Į pradžią",
+    "reserve": "Rezervuoti baidarę",
+    "help": "Reikia pagalbos?",
+    "contact": "Susisiekite"
+  },
   "reservation": {
     "cardTitle": "Greita rezervacija",
     "instantTag": "Momentinis",
