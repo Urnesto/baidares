@@ -7,13 +7,13 @@ import { Tag } from "@/components/ui/Tag";
 import { routes } from "@/mocks";
 
 const TARGET_RIVERS = ["Žeimena", "Dubinga", "Mera", "Lakaja", "Asveja"];
-const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 const inputCls = "font-sans text-[0.875rem] px-3 py-[0.6875rem] rounded-[0.6875rem] border border-[var(--line)] bg-[#fbfaf4] text-ink w-full focus:outline-none focus:border-accent";
 const labelCls = "font-mono text-[0.625rem] tracking-[0.12em] uppercase text-muted";
 
 export function ReservationCard() {
   const t = useTranslations("reservation");
+  const tDiff = useTranslations("difficulty");
 
   const [submitted, setSubmitted]         = useState(false);
   const [modalOpen, setModalOpen]         = useState(false);
@@ -109,14 +109,14 @@ export function ReservationCard() {
                 <optgroup label={t("groupOneDay")}>
                   {day1Routes.map((r) => (
                     <option key={r.slug} value={r.slug}>
-                      {r.river} · {capitalize(r.difficulty)} · {r.distanceKm} km
+                      {r.river} · {tDiff(r.difficulty)} · {r.distanceKm} km
                     </option>
                   ))}
                 </optgroup>
                 <optgroup label={t("groupTwoDays")}>
                   {day2Routes.map((r) => (
                     <option key={r.slug} value={r.slug}>
-                      {r.river} · {capitalize(r.difficulty)} · {r.distanceKm} km
+                      {r.river} · {tDiff(r.difficulty)} · {r.distanceKm} km
                     </option>
                   ))}
                 </optgroup>
@@ -139,7 +139,7 @@ export function ReservationCard() {
                 {selectedRoute ? `${selectedRoute.river} · ${selectedRoute.title}` : t("selectRoute")}
               </span>
               <span className="font-mono text-[0.625rem] tracking-[0.09em] uppercase text-muted">
-                {selectedRoute ? `${capitalize(selectedRoute.difficulty)} · ${selectedRoute.days === 2 ? t("durationTwoDays") : t("durationOneDay")}` : ""}
+                {selectedRoute ? `${tDiff(selectedRoute.difficulty)} · ${selectedRoute.days === 2 ? t("durationTwoDays") : t("durationOneDay")}` : ""}
               </span>
             </div>
           </div>
