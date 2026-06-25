@@ -5,7 +5,7 @@ import { contact } from "@/mocks";
 const resend = new Resend(process.env.RESENT_API_KEY);
 
 export async function POST(req: NextRequest) {
-  const { phone, email, route, boat, people, date } = await req.json();
+  const { phone, email, message, route, boat, people, date } = await req.json();
 
   if (!phone) {
     return NextResponse.json({ error: "Phone is required" }, { status: 400 });
@@ -23,7 +23,8 @@ export async function POST(req: NextRequest) {
         ${route  ? `<tr><td><strong>Maršrutas</strong></td><td>${route}</td></tr>` : ""}
         ${boat   ? `<tr><td><strong>Paslauga</strong></td><td>${boat}</td></tr>` : ""}
         ${people ? `<tr><td><strong>Žmonių skaicius</strong></td><td>${people}</td></tr>` : ""}
-        ${date   ? `<tr><td><strong>Data</strong></td><td>${date}</td></tr>` : ""}
+        ${date    ? `<tr><td><strong>Data</strong></td><td>${date}</td></tr>` : ""}
+        ${message ? `<tr><td><strong>Žinutė nuo kliento</strong></td><td style="white-space:pre-wrap">${message}</td></tr>` : ""}
       </table>
     `,
   });

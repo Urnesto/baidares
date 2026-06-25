@@ -48,14 +48,15 @@ export function ReservationCard() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        phone:  fd.get("phone"),
-        email:  fd.get("email"),
-        route:  selectedRoute
+        phone:   fd.get("phone"),
+        email:   fd.get("email"),
+        message: fd.get("message"),
+        route:   selectedRoute
           ? `${selectedRoute.river} · ${selectedRoute.title} · ${selectedRoute.distanceKm} km · ${selectedRoute.days === 1 ? "1 diena" : "2 dienos"}`
           : selectedSlug,
-        boat:   formData.boat,
-        people: formData.people,
-        date:   formData.date,
+        boat:    formData.boat,
+        people:  formData.people,
+        date:    formData.date,
       }),
     });
     setSending(false);
@@ -194,7 +195,16 @@ export function ReservationCard() {
                     <input type="email" name="email" placeholder="you@example.com" className={inputCls} />
                   </div>
 
-                 
+                  <div className="flex flex-col gap-[0.3125rem]">
+                    <label className={labelCls}>{t("messageLabel")}</label>
+                    <textarea
+                      name="message"
+                      rows={3}
+                      placeholder={t("messagePlaceholder")}
+                      className={inputCls + " resize-none"}
+                    />
+                  </div>
+
                   {/* Agreement */}
                   <label className="flex items-start gap-2.5 cursor-pointer select-none">
                     <input

@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 
+const LOCALES = ["lt", "en", "pl"] as const;
+type Locale = typeof LOCALES[number];
+
 interface LangToggleProps {
   overlay?: boolean;
   className?: string;
@@ -15,12 +18,11 @@ export function LangToggle({ overlay, className }: LangToggleProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  function switchLocale(next: "lt" | "en") {
+  function switchLocale(next: Locale) {
     if (next === locale) return;
-    // pathname includes the locale prefix e.g. "/lt/routes/slug" or "/routes/slug"
-    // Strip leading locale segment and prepend new one
+    sessionStorage.setItem("locale", next);
     const segments = pathname.split("/");
-    if (segments[1] === "lt" || segments[1] === "en") {
+    if (LOCALES.includes(segments[1] as Locale)) {
       segments[1] = next;
     } else {
       segments.splice(1, 0, next);
@@ -34,7 +36,7 @@ export function LangToggle({ overlay, className }: LangToggleProps) {
       overlay ? "border border-cream/20" : "border border-[var(--line)]",
       className
     )}>
-      {(["lt", "en"] as const).map((l) => (
+      {LOCALES.map((l) => (
         <button
           key={l}
           onClick={() => switchLocale(l)}

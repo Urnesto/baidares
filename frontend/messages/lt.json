@@ -185,6 +185,8 @@
     "selectRoute": "Pasirinkite maršrutą",
     "durationOneDay": "1 diena",
     "durationTwoDays": "2 dienos",
+    "messageLabel": "Žinutė (neprivaloma)",
+    "messagePlaceholder": "Papildoma informacija ar klausimai…",
     "agreePrefix": "Sutinku su",
     "agreeTermsLink": "naudojimo sąlygomis",
     "termsTitle": "Naudojimo sąlygos",

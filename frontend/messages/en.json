@@ -187,6 +187,8 @@
     "selectRoute": "Select a route",
     "durationOneDay": "1 day",
     "durationTwoDays": "2 days",
+    "messageLabel": "Message (optional)",
+    "messagePlaceholder": "Any additional info or questions…",
     "agreePrefix": "I agree to the",
     "agreeTermsLink": "terms and conditions",
     "termsTitle": "Terms & Conditions",
