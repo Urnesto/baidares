@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { RouteCard } from "@/components/RouteCard";
 import { getRouteBySlug, getRelatedRoutes, routes } from "@/mocks";
 import { RouteMap } from "@/components/RouteMap";
+import Link from "next/link";
 
 const heroBgs: Record<string, string> = {
   river:  "url('https://images.unsplash.com/photo-1586699253884-e199770f63b9?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat, linear-gradient(180deg,#3a5246,#4a726b)",
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const route = getRouteBySlug(slug);
   if (!route) return {};
-  return { title: `${route.title} — Asvėjos baidarių centras` };
+  return { title: `${route.title} Asvėjos baidarių centras` };
 }
 
 export default async function RouteDetailPage({ params }: { params: Promise<{ slug: string; locale: string }> }) {
@@ -60,7 +61,7 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
         </div>
         <div className="relative z-[3] mt-auto max-w-content mx-auto px-8 pb-[3.5rem] pt-6 w-full">
           <nav className="flex gap-2 items-center font-mono text-[0.6875rem] tracking-[0.08em] text-cream/70 mb-3">
-            <a href="/routes" className="hover:text-cream transition-colors">{t("breadcrumbRoutes")}</a>
+            <Link href="/routes" className="hover:text-cream transition-colors">{t("breadcrumbRoutes")}</Link>
             <span>/</span>
             <span className="text-cream/90">{route.title}</span>
           </nav>
@@ -171,10 +172,9 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
         <aside>
           <div className="sticky top-6 border border-[var(--line)] rounded-[1.125rem] bg-surface shadow-sm overflow-hidden">
             <div className="px-[1.375rem] pt-[1.375rem] pb-[1.125rem] border-b border-[var(--line)]">
-              <p className="font-mono text-[0.6875rem] tracking-[0.08em] uppercase text-muted m-0 mb-2">{t("pricePerPerson")}</p>
+
               <div className="flex items-baseline gap-1.5">
-                <span className="font-serif text-[2.125rem] leading-none text-ink">€{route.price}</span>
-              
+               
               </div>
             </div>
             <div className="px-[1.375rem] py-5 flex flex-col gap-[0.8125rem]">
@@ -204,12 +204,12 @@ export default async function RouteDetailPage({ params }: { params: Promise<{ sl
         <section className="max-w-content mx-auto px-8 pt-4 pb-[5.25rem]">
           <div className="flex items-center justify-between mb-7">
             <h2 className="font-serif text-[2rem] m-0">{t("moreOn")}</h2>
-            <a href="/routes" className="font-mono text-[0.75rem] tracking-[0.08em] uppercase text-ink-soft hover:text-ink transition-colors inline-flex items-center gap-1.5">
+            <Link href="/routes" className="font-mono text-[0.75rem] tracking-[0.08em] uppercase text-ink-soft hover:text-ink transition-colors inline-flex items-center gap-1.5">
               {t("allRoutes")}
               <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M13 6l6 6-6 6" />
               </svg>
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {related.map((r) => (

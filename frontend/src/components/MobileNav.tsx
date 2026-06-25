@@ -4,7 +4,9 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { LangToggle } from "./LangToggle";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import { Button } from "./ui/Button";
+import { contact } from "@/mocks";
 
 interface MobileNavProps {
   overlay?: boolean;
@@ -23,8 +25,8 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
   }, [open]);
 
   useEffect(() => {
-    if (open) setTimeout(() => setMounted(true), 10);
-    else setMounted(false);
+    const id = setTimeout(() => setMounted(open), open ? 10 : 0);
+    return () => clearTimeout(id);
   }, [open]);
 
   return (
@@ -96,13 +98,14 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
 
           {/* Top bar — brand + close */}
           <div className="relative z-10 flex items-center justify-between px-6 h-[4.625rem] flex-shrink-0 border-b border-cream/10">
-            <a href="/" onClick={() => setOpen(false)} className="shrink-0">
+            <Link href="/" onClick={() => setOpen(false)} className="shrink-0">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/logo.webp"
                 alt="Asvėjos baidarių centras"
                 className="h-9 w-auto object-contain brightness-0 invert"
               />
-            </a>
+            </Link>
             <button
               aria-label="Close menu"
               onClick={() => setOpen(false)}
@@ -156,7 +159,7 @@ export function MobileNav({ overlay, active, links }: MobileNavProps) {
             style={{ transitionDelay: mounted ? `${80 + links.length * 70}ms` : "0ms" }}
           >
             <LangToggle overlay />
-             <Button variant="light" size="sm" as="a" href="tel:+37064112211">{t("callNow")}</Button>
+             <Button variant="light" size="sm" as="a" href={contact.phoneHref}>{t("callNow")}</Button>
        
           </div>
         </div>

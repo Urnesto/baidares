@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/Eyebrow";
 import { RouteCard } from "@/components/RouteCard";
-import { routes } from "@/mocks";
+import { routes, rentalPrices } from "@/mocks";
 import { FleetCard } from "@/components/FleetCard";
 import { FleetSlider } from "@/components/FleetSlider";
 import { ReservationCard } from "@/components/ReservationCard";
@@ -13,6 +13,8 @@ import { ReservationCard } from "@/components/ReservationCard";
 export default async function Home() {
   const t = await getTranslations("home");
   const tDiff = await getTranslations("difficulty");
+  const tRoutes = await getTranslations("routes");
+  const tFleet = await getTranslations("fleet");
 
   return (
     <>
@@ -64,7 +66,7 @@ export default async function Home() {
               {t("popularTitle")}
             </h2>
           </div>
-          <Button variant="ghost" size="sm" as="a" href="/routes">{t("popularSeeAll")}</Button>
+          <Button variant="ghost" size="sm" as="a" href="/routes">{t("popularSeeAll", { count: routes.length })}</Button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {routes.slice(0, 3).map((r) => (
@@ -79,6 +81,7 @@ export default async function Home() {
               route={r.route}
               image={r.image}
               href={`/routes/${r.slug}`}
+              daysLabel={r.days === 1 ? tRoutes("oneDay") : tRoutes("twoDays")}
             />
           ))}
         </div>
@@ -107,25 +110,93 @@ export default async function Home() {
             className="grid gap-[1.125rem] overflow-x-auto pb-1"
             style={{ gridAutoFlow: "column", gridAutoColumns: "minmax(18.125rem, 1fr)", scrollSnapType: "x mandatory", scrollbarWidth: "none" }}
           >
-            <FleetCard title="Kayak rent" description="High-performance kayaks for every crew, from solo paddlers to small groups." features={["One-person", "Two-person", "Three-person"]} image="forest" badge="Most popular" ctaLabel="Book now" />
-            <FleetCard title="Raft rent" description="Roomy rafts for journeys and corporate retreats — paddles always included." features={["Up to 8 people", "Paddles included"]} image="water" ctaLabel="Select" />
-            <FleetCard title="SUP rent" description="Stable stand-up paddleboards for a calm glide along the lake shoreline." features={["Paddles included", "Life vests included"]} image="aerial" ctaLabel="Select" />
-            <FleetCard title="Mobile sauna" description="Portable wood-fired sauna delivered lakeside — warm up between paddles." features={["4–8 people", "Firewood included"]} image="pine" ctaLabel="Enquire" />
-            <FleetCard title="Mobile hot tub" description="A heated hot tub by the water with soft LED lighting for evening soaks." features={["6–8 people", "LED lighting"]} image="mist" ctaLabel="Enquire" />
+            <FleetCard title={tFleet("kayak.title")} description={tFleet("kayak.desc")} features={tFleet.raw("kayak.features") as string[]} image="forest" badge={tFleet("kayak.badge")} />
+            <FleetCard title={tFleet("raft.title")} description={tFleet("raft.desc")} features={tFleet.raw("raft.features") as string[]} image="water" />
+            <FleetCard title={tFleet("sup.title")} description={tFleet("sup.desc")} features={tFleet.raw("sup.features") as string[]} image="aerial" />
+            <FleetCard title={tFleet("sauna.title")} description={tFleet("sauna.desc")} features={tFleet.raw("sauna.features") as string[]} image="pine" />
+            <FleetCard title={tFleet("hotTub.title")} description={tFleet("hotTub.desc")} features={tFleet.raw("hotTub.features") as string[]} image="mist" />
           </div>
         </div>
       </section>
 
-      {/* ===== GALLERY ===== */}
+      {/* ===== KAINOS ===== */}
+      <section id="kainos" className="py-24" style={{ background: "#ece9dd" }}>
+        <div className="max-w-content mx-auto px-8">
+          <div className="flex items-center justify-between flex-wrap gap-6 mb-10">
+            <div>
+              <Eyebrow>{t("pricingEyebrow")}</Eyebrow>
+              <h2 className="font-serif font-normal m-0 mt-3 leading-[1.0]" style={{ fontSize: "clamp(2.25rem, 4.6vw, 3.75rem)" }}>
+                {t("pricingTitle")}
+              </h2>
+            </div>
+            <Button variant="ghost" size="sm" as="a" href="#reserve">{t("heroReserve")}</Button>
+          </div>
+
+          {/* Included pills */}
+          <div className="flex flex-wrap gap-2 mb-10">
+            {(t.raw("pricingIncluded") as string[]).map((item: string) => (
+              <span key={item} className="flex items-center gap-1.5 px-3.5 py-2 bg-surface border border-[var(--line-soft)] rounded-full text-[0.8125rem] text-ink">
+                <svg className="text-accent flex-shrink-0" width="0.75rem" height="0.75rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12l4 4L19 6" /></svg>
+                {item}
+              </span>
+            ))}
+          </div>
+
+          {/* Pricing table */}
+          <div className="rounded-[1rem] overflow-hidden border border-[var(--line)] bg-surface">
+            {/* Header row */}
+            <div className="grid grid-cols-[1fr_6.5rem_10rem_6.5rem] border-b border-[var(--line)]">
+              <div className="px-5 py-3.5">
+                <span className="font-mono text-[0.5875rem] tracking-[0.12em] uppercase text-muted">{t("pricingBoat")}</span>
+              </div>
+              {[
+                { label: "I–IV", sub: t("pricingSubWeekday"), accent: false },
+                { label: "V–VI", sub: t("pricingSubWeekend"), accent: true  },
+                { label: "VII",  sub: t("pricingSubSunday"),  accent: false },
+              ].map((col) => (
+                <div key={col.label} className={`px-5 py-3.5 text-center ${col.accent ? "bg-accent/5" : ""}`}>
+                  <span className={`font-mono text-[0.5875rem] tracking-[0.12em] uppercase block mb-0.5 ${col.accent ? "text-accent" : "text-muted"}`}>{col.label}</span>
+                  <span className="font-mono text-[0.47rem] tracking-[0.07em] uppercase text-muted/60 hidden sm:block">{col.sub}</span>
+                </div>
+              ))}
+            </div>
+
+
+            {rentalPrices.map((row) => (
+              <div
+                key={row.nameKey}
+                className={`grid grid-cols-[1fr_6.5rem_10rem_6.5rem] border-b border-[var(--line)] last:border-b-0 ${row.dark ? "bg-forest-950" : ""}`}
+              >
+                <div className="px-5 py-4 flex items-center">
+                  <span className={`font-serif text-[1.0625rem] leading-none ${row.dark ? "text-cream" : "text-ink"}`}>{t(row.nameKey as Parameters<typeof t>[0])}</span>
+                </div>
+                {[
+                  { val: row.weekday, accent: false },
+                  { val: row.weekend, accent: true },
+                  { val: row.sunday,  accent: false },
+                ].map((cell, ci) => (
+                  <div key={ci} className={`px-5 py-4 flex items-center justify-center ${cell.accent && !row.dark ? "bg-accent/5" : ""}`}>
+                    <span className={`font-serif text-[1.375rem] leading-none ${row.dark ? "text-cream" : cell.accent ? "text-accent" : "text-ink"}`}>€{cell.val}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <p className="font-mono text-[0.5625rem] tracking-[0.08em] uppercase text-muted mt-3">
+            {t("pricingNote")}
+          </p>
+        </div>
+      </section>
+
+            {/* ===== GALLERY ===== */}
       <section className="py-24 max-w-content mx-auto px-8">
         <div className="text-center max-w-[37.5rem] mx-auto mb-11">
           <Eyebrow center>{t("galleryEyebrow")}</Eyebrow>
           <h2 className="font-serif font-normal m-0 leading-[1.0]" style={{ fontSize: "clamp(2.25rem, 4.6vw, 3.75rem)" }}>
             {t("galleryTitle")}
           </h2>
-          <p className="text-[1.125rem] text-ink-soft mt-[0.875rem] max-w-[54ch] mx-auto leading-[1.6]">
-            {t("galleryDesc")}
-          </p>
+          
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[

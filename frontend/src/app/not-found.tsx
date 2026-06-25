@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/Button";
+import { contact } from "@/mocks";
 
 export default function NotFound() {
   return (
@@ -55,7 +56,7 @@ export default function NotFound() {
         </h1>
 
         <p className="text-[1.0625rem] text-ink-soft leading-[1.65] mb-8 max-w-[30ch]">
-          Looks like you've drifted into uncharted waters. The page you're looking for doesn't exist — but the river is still waiting.
+          Looks like you&apos;ve drifted into uncharted waters. The page you&apos;re looking for doesn&apos;t exist  but the river is still waiting.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
@@ -65,7 +66,7 @@ export default function NotFound() {
 
         <p className="mt-7 text-[0.8125rem] text-muted font-mono tracking-[0.04em]">
           Need help?{" "}
-          <a href="mailto:hello@baidares.lt" className="underline underline-offset-2 hover:text-water transition-colors">
+          <a href={contact.emailHref} className="underline underline-offset-2 hover:text-water transition-colors">
             Contact us
           </a>
         </p>

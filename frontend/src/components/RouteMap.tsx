@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { RouteMap as RouteMapData } from "@/types";
 
 interface RouteMapProps {
@@ -9,6 +10,7 @@ interface RouteMapProps {
 }
 
 export function RouteMap({ title, mapData }: RouteMapProps) {
+  const t = useTranslations("route");
   const [loaded, setLoaded] = useState(false);
 
   const embedUrl =
@@ -39,7 +41,7 @@ export function RouteMap({ title, mapData }: RouteMapProps) {
           <svg width="0.625rem" height="0.625rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
           </svg>
-          Open full map
+          {t("openFullMap")}
         </a>
       </div>
 
@@ -58,7 +60,7 @@ export function RouteMap({ title, mapData }: RouteMapProps) {
             <div className="absolute inset-0 bg-forest-900/50 flex items-center justify-center backdrop-blur-[2px]">
               <div className="flex flex-col items-center gap-3">
                 <div className="w-8 h-8 rounded-full border-2 border-cream/20 border-t-cream/80 animate-spin" />
-                <span className="font-mono text-[0.625rem] tracking-[0.1em] uppercase text-cream/60">Loading map…</span>
+                <span className="font-mono text-[0.625rem] tracking-[0.1em] uppercase text-cream/60">{t("loadingMap")}</span>
               </div>
             </div>
           </div>

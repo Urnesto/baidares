@@ -26,9 +26,10 @@ interface RouteCardProps {
   route: string;
   image?: keyof typeof bgImages;
   href?: string;
+  daysLabel?: string;
 }
 
-export function RouteCard({ title, river, subtitle, difficulty, difficultyLabel, distance, duration, route, image = "river", href = "/routes/1" }: RouteCardProps) {
+export function RouteCard({ title, river, subtitle, difficulty, difficultyLabel, distance, duration, route, image = "river", href = "/routes/1", daysLabel }: RouteCardProps) {
   const location = subtitle.split("·")[0].trim();
 
   return (
@@ -46,6 +47,7 @@ export function RouteCard({ title, river, subtitle, difficulty, difficultyLabel,
         <div className="absolute top-3 left-3 z-10 flex gap-1.5">
           <Tag variant={difficulty}>{difficultyLabel ?? difficulty.charAt(0).toUpperCase() + difficulty.slice(1)}</Tag>
           <Tag>{distance}</Tag>
+          {daysLabel && <Tag variant="sage">{daysLabel}</Tag>}
         </div>
         {/* Arrow */}
         <div className="absolute bottom-[-0.9375rem] right-[0.875rem] z-10 w-[2.125rem] h-[2.125rem] rounded-full bg-accent text-[#f4f3ea] grid place-items-center border-[3px] border-white transition-all duration-[250ms] group-hover:bg-accent-hover group-hover:-translate-y-0.5">

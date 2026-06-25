@@ -5,50 +5,20 @@ import { Footer } from "@/components/Footer";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Button } from "@/components/ui/Button";
 import { Tag } from "@/components/ui/Tag";
+import { rentalPrices } from "@/mocks";
+
+function lowestPrice(...nameKeys: string[]): number {
+  return Math.min(
+    ...rentalPrices
+      .filter((r) => nameKeys.includes(r.nameKey))
+      .map((r) => r.weekday)
+  );
+}
 
 export async function generateMetadata() {
   const t = await getTranslations("fleet");
   return { title: t("metaTitle") };
 }
-
-const included = [
-  {
-    icon: (
-      <svg width="1.25rem" height="1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" />
-      </svg>
-    ),
-    titleKey: "includedSafety" as const,
-    bodyKey: "includedSafetyBody" as const,
-  },
-  {
-    icon: (
-      <svg width="1.25rem" height="1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M5 17l4-12 6 4 4-2-3 12" /><circle cx="6" cy="19" r="1.5" /><circle cx="18" cy="19" r="1.5" />
-      </svg>
-    ),
-    titleKey: "includedTransfers" as const,
-    bodyKey: "includedTransfersBody" as const,
-  },
-  {
-    icon: (
-      <svg width="1.25rem" height="1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <rect x="3" y="4" width="18" height="16" rx="2" /><path d="M8 4v16M3 9h5" />
-      </svg>
-    ),
-    titleKey: "includedMap" as const,
-    bodyKey: "includedMapBody" as const,
-  },
-  {
-    icon: (
-      <svg width="1.25rem" height="1.25rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <circle cx="12" cy="12" r="9" /><path d="M8 13s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
-      </svg>
-    ),
-    titleKey: "includedBriefing" as const,
-    bodyKey: "includedBriefingBody" as const,
-  },
-];
 
 export default async function FleetPage() {
   const t = await getTranslations("fleet");
@@ -59,7 +29,7 @@ export default async function FleetPage() {
       name: t("kayak.title"),
       tagline: "Solo, tandem & triple",
       description: t("kayak.desc"),
-      price: "€25",
+      price: `€${lowestPrice("pricingBoatSingle", "pricingBoatDouble", "pricingBoatTriple")}`,
       unit: t("perDay"),
       badge: t("kayak.badge"),
       capacity: "",
@@ -72,7 +42,7 @@ export default async function FleetPage() {
       name: t("raft.title"),
       tagline: "Group adventure",
       description: t("raft.desc"),
-      price: "€100",
+      price: `€${lowestPrice("pricingBoatRaft")}`,
       unit: t("perDay"),
       badge: undefined,
       capacity: (t.raw("raft.features") as string[])[0],
@@ -86,7 +56,7 @@ export default async function FleetPage() {
       tagline: "Stand-up · SUP",
       description: t("sup.desc"),
       price: "€16",
-      unit: "/ hour",
+      unit: "/ day",
       badge: undefined,
       capacity: "1 per board",
       image: "url('/images/suv.webp') center/cover no-repeat",
@@ -180,7 +150,7 @@ export default async function FleetPage() {
                 <p className="font-mono text-[0.5625rem] tracking-[0.1em] uppercase text-cream/40 mb-1 md:text-right">{waterCraft[0].unit}</p>
                 <p className="font-serif text-[3rem] leading-none text-cream">{waterCraft[0].price}</p>
               </div>
-              <Button variant="light" as="a" href="/#reserve">{t("bookNow")}</Button>
+             
             </div>
           </div>
         </div>
@@ -213,7 +183,7 @@ export default async function FleetPage() {
                     </span>
                   ))}
                 </div>
-                <Button variant="ghost" size="sm" as="a" href="/#reserve">{t("select")}</Button>
+
               </div>
             </div>
           ))}
@@ -263,50 +233,6 @@ export default async function FleetPage() {
           ))}
         </div>
       </section>
-
-      {/* ── What's included ── */}
-      <section className="bg-paper-2 mt-16 py-20">
-        <div className="max-w-content mx-auto px-8">
-          <div className="text-center max-w-[34rem] mx-auto mb-10">
-            <Eyebrow center>Every rental includes</Eyebrow>
-            <h2 className="font-serif text-[2.25rem] leading-[1.05] m-0 mt-4">No hidden extras</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {included.map((item) => (
-              <div key={item.titleKey} className="p-6 bg-surface border border-[var(--line-soft)] rounded-[0.75rem]">
-                <div className="w-[2.375rem] h-[2.375rem] rounded-[0.6875rem] bg-sage-200 text-forest-700 grid place-items-center mb-4 flex-shrink-0">
-                  {item.icon}
-                </div>
-                <h4 className="font-serif text-[1.1875rem] m-0 mb-2">{item.titleKey.replace("included","").replace(/([A-Z])/g," $1").trim()}</h4>
-                <p className="text-[0.84375rem] text-muted m-0 leading-[1.55]">{item.bodyKey.replace("included","").replace(/([A-Z])/g," $1").trim()}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Add-ons ── */}
-      <section className="max-w-content mx-auto px-8 py-16">
-        <div className="flex items-baseline gap-4 mb-7">
-          <div>
-            <Eyebrow>Optional</Eyebrow>
-            <h2 className="font-serif text-[2.25rem] leading-[1.05] m-0 mt-2">Add-ons</h2>
-          </div>
-        </div>
-        <div className="flex flex-col gap-3">
-          {addons.map((addon) => (
-            <div key={addon.name} className="flex items-center justify-between gap-5 px-6 py-5 bg-surface border border-[var(--line)] rounded-[0.75rem] hover:shadow-sm transition-all duration-200">
-              <div>
-                <h4 className="font-serif text-[1.1875rem] m-0 mb-[0.1875rem]">{addon.name}</h4>
-                <p className="text-[0.84375rem] text-muted m-0">{addon.description}</p>
-              </div>
-              <span className="font-serif text-[1.375rem] text-ink flex-shrink-0">{addon.price}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-     
 
       <Footer />
     </>

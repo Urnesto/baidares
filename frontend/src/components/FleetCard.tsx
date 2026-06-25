@@ -20,7 +20,7 @@ interface FleetCardProps {
   href?: string;
 }
 
-export function FleetCard({ title, description, features, image = "forest", badge, ctaLabel = "Book now", href = "/fleet" }: FleetCardProps) {
+export function FleetCard({ title, description, features, image = "forest", badge, href = "/services" }: FleetCardProps) {
   return (
     <div className="relative rounded-[1.125rem] overflow-hidden min-h-[22.5rem] flex flex-col justify-end text-cream flex-shrink-0 w-[18.125rem]" style={{ scrollSnapAlign: "start" }}>
       <div className="absolute inset-0" style={{ background: bgImages[image] }} />
@@ -43,7 +43,7 @@ export function FleetCard({ title, description, features, image = "forest", badg
             </span>
           ))}
         </div>
-        <Button variant="light" size="sm" as="a" href={href}>{ctaLabel}</Button>
+
       </div>
     </div>
   );

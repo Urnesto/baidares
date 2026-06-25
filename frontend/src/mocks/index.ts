@@ -17,11 +17,11 @@ export const routes: Route[] = [
     days: 1,
     image: "river",
     price: 24,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn","pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Reed Curtain", description: "A dense wall of reeds at the lake's northern inlet where bitterns nest in spring. Listen for the deep boom at dawn." },
       { num: 2, title: "The Glass Point", description: "The widest part of the lake, perfectly calm on windless mornings, with a 360° panorama of pine-covered hills." },
-      { num: 3, title: "Heron's Bay", description: "A shallow sheltered cove where grey herons fish at low tide — an ideal rest point before the final stretch." },
+      { num: 3, title: "Heron's Bay", description: "A shallow sheltered cove where grey herons fish at low tide  an ideal rest point before the final stretch." },
     ],
     relatedSlugs: ["golden-hour-glide", "emerald-banks", "misty-meander"],
     map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
@@ -40,10 +40,10 @@ export const routes: Route[] = [
     days: 1,
     image: "pine",
     price: 32,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Old Oak Bend", description: "A wide sweeping turn marked by a solitary oak said to be older than the village. A favourite first rest stop, two kilometres in." },
-      { num: 2, title: "Sandy Shallows Beach", description: "A long, low sandbar at the river's halfway point. The recommended lunch and swim stop — calm, shallow and sun-warmed." },
+      { num: 2, title: "Sandy Shallows Beach", description: "A long, low sandbar at the river's halfway point. The recommended lunch and swim stop calm, shallow and sun-warmed." },
       { num: 3, title: "The Pine Gallery", description: "The route's quietest stretch, where the channel narrows and ancient pines lean in from both banks. Listen for woodpeckers." },
     ],
     relatedSlugs: ["misty-meander", "valley-serpent", "the-twilight-drift"],
@@ -63,7 +63,7 @@ export const routes: Route[] = [
     days: 1,
     image: "water",
     price: 42,
-    includes: ["kayakPaddleVest", "safetyBriefing", "waterproofMap", "experiencedGuide"],
+    includes: ["kayakPaddleVest", "safetyBriefing"],
     landmarks: [
       { num: 1, title: "First Drop", description: "A two-metre chute that funnels the river between boulders. Scout from the left bank before committing." },
       { num: 2, title: "The Boil Pool", description: "A deep churning pool below the main rapid — a natural rest point and the place most paddlers stop to catch their breath." },
@@ -86,7 +86,7 @@ export const routes: Route[] = [
     days: 1,
     image: "forest",
     price: 18,
-    includes: ["kayakPaddleVest", "waterproofMap", "guidedLaunch"],
+    includes: ["kayakPaddleVest"],
     landmarks: [
       { num: 1, title: "The Birch Arch", description: "Two ancient birches lean across the channel from opposite banks, forming a natural gateway into the hidden bay." },
       { num: 2, title: "Lily Pad Clearing", description: "A circular clearing carpeted in yellow water lilies in summer — a magical, completely still pool." },
@@ -108,7 +108,7 @@ export const routes: Route[] = [
     days: 1,
     image: "sunset",
     price: 22,
-    includes: ["kayakPaddleVest", "waterproofMap", "hotDrinkReturn"],
+    includes: ["kayakPaddleVest"],
     landmarks: [
       { num: 1, title: "The Amber Cliff", description: "A low pine-topped promontory that glows orange at sunset and reflects perfectly on the still lake surface." },
       { num: 2, title: "Bat Bay", description: "After dusk, hundreds of bats emerge over this sheltered cove — a memorable finale to the evening paddle." },
@@ -130,7 +130,7 @@ export const routes: Route[] = [
     days: 1,
     image: "mist",
     price: 55,
-    includes: ["kayakPaddleVest", "safetyBriefingGuide", "packedLunch", "waterproofMap", "emergencyKit"],
+    includes: ["kayakPaddleVest", "safetyBriefingGuide", "emergencyKit"],
     landmarks: [
       { num: 1, title: "Upper Gorge Entrance", description: "The canyon walls close in dramatically, dropping the temperature and blocking direct sunlight. The start of the technical section." },
       { num: 2, title: "Devil's Elbow", description: "A sharp 90° bend with a Class III rapid. Mandatory scout from the right bank before running." },
@@ -153,7 +153,7 @@ export const routes: Route[] = [
     days: 1,
     image: "mist",
     price: 28,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "Fog Hollow", description: "A wide meander where fog collects at dawn, creating a surreal white-out paddle for the first 30 minutes." },
       { num: 2, title: "The Otter Bank", description: "A sandy bank where otters are regularly spotted at dawn. Go quietly and drift rather than paddle." },
@@ -176,7 +176,7 @@ export const routes: Route[] = [
     days: 1,
     image: "aerial",
     price: 34,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Narrows", description: "A 50-metre channel between two islands so tight the pines overhead touch — paddled single file." },
       { num: 2, title: "Osprey Island", description: "A tiny uninhabited island with a nesting osprey pair visible from May to August. Keep 50m distance." },
@@ -199,7 +199,7 @@ export const routes: Route[] = [
     days: 1,
     image: "river",
     price: 16,
-    includes: ["kayakPaddleVest", "waterproofMap", "childrensVests"],
+    includes: ["kayakPaddleVest", "childrensVests"],
     landmarks: [
       { num: 1, title: "The Sandbar", description: "A wide sandy shallows in the lake's centre — perfect for a wade, a swim, or a picnic with small children." },
       { num: 2, title: "Fish-Eye Point", description: "The clearest part of the lake, where the sandy bottom is visible at 4 metres depth on calm days." },
@@ -221,7 +221,7 @@ export const routes: Route[] = [
     days: 1,
     image: "forest",
     price: 30,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The First Bend", description: "A textbook S-curve with a small gravel beach on the inside — the classic opening move of the upper valley section." },
       { num: 2, title: "Eagle Cliff", description: "A 20-metre sandstone cliff where white-tailed eagles nest. Spotted on most clear-sky mornings." },
@@ -244,7 +244,7 @@ export const routes: Route[] = [
     days: 1,
     image: "aerial",
     price: 26,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Reed Labyrinth", description: "A network of natural channels through the reed beds — no marked route, just exploration. Take a photo of the entry point." },
       { num: 2, title: "Cormorant Rock", description: "A large granite boulder just offshore where a colony of cormorants dry their wings every morning." },
@@ -267,7 +267,7 @@ export const routes: Route[] = [
     days: 1,
     image: "water",
     price: 48,
-    includes: ["kayakPaddleVest", "safetyBriefing", "waterproofMap", "experiencedGuide"],
+    includes: ["kayakPaddleVest", "safetyBriefing"],
     landmarks: [
       { num: 1, title: "The Chute", description: "A 40-metre acceleration channel between boulders — the river's biggest sustained rapid, best run on the left line." },
       { num: 2, title: "Autumn Beach", description: "A wide gravel bar carpeted in fallen leaves, perfect for lunch. The river slows here for a 200-metre breather." },
@@ -292,7 +292,7 @@ export const routes: Route[] = [
     days: 2,
     image: "pine",
     price: 85,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "tentCampingGear", "packedBreakfast", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Headwaters Pool", description: "Day one starts in a crystal-clear pool where springs feed the river — the water is cold and the bottom visible at depth." },
       { num: 2, title: "Sandbar Camp", description: "A wide gravel bar that emerges at low summer water — the overnight camp, with fire rings and a view of the stars." },
@@ -315,7 +315,7 @@ export const routes: Route[] = [
     days: 2,
     image: "aerial",
     price: 70,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "tentCampingGear", "packedBreakfast", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn",  "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Northern Narrows", description: "Where the lake pinches to 200 metres and the water turns a deep jade — the most photogenic section." },
       { num: 2, title: "Island Camp", description: "A small forested island with a clearing just large enough for three tents and a fire — the overnight stop." },
@@ -340,7 +340,7 @@ export const routes: Route[] = [
     days: 1,
     image: "forest",
     price: 27,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Alder Tunnel", description: "A 300-metre section where alders arch over both banks, turning the river into a cool green corridor." },
       { num: 2, title: "Gravel Beach", description: "A natural gravel flat at the river's widest point — the recommended break and swim stop." },
@@ -363,7 +363,7 @@ export const routes: Route[] = [
     days: 2,
     image: "mist",
     price: 80,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "tentCampingGear", "packedBreakfast", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn",  "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Source Meadow", description: "Day one starts in open meadow — the Dubinga barely a stream here, gaining depth and confidence with each kilometre." },
       { num: 2, title: "Forest Camp", description: "An established camp in a clearing above the right bank. Fire pit, water access, silence." },
@@ -388,7 +388,7 @@ export const routes: Route[] = [
     days: 1,
     image: "river",
     price: 25,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Glass Bend", description: "A long, slow meander where the river runs so still it perfectly mirrors the overhanging birches." },
       { num: 2, title: "Kingfisher Straight", description: "A 400-metre straight where kingfishers work the shallows — patience usually rewards a sighting." },
@@ -411,7 +411,7 @@ export const routes: Route[] = [
     days: 2,
     image: "canyon",
     price: 78,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "tentCampingGear", "packedBreakfast", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn",  "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Bluff Entrance", description: "The valley closes in: sandy walls rise on both sides and the sky narrows to a ribbon above the river." },
       { num: 2, title: "Cliff Camp", description: "A broad shingle beach beneath a 10-metre sandstone bluff — the overnight stop, with a natural windbreak." },
@@ -436,7 +436,7 @@ export const routes: Route[] = [
     days: 1,
     image: "pine",
     price: 22,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Pine Corridor", description: "An opening kilometre under a dense pine canopy — the resin scent here is remarkable on warm mornings." },
       { num: 2, title: "Beaver Dam Portage", description: "A short carry around an active beaver dam. The pond behind it is worth a pause." },
@@ -459,7 +459,7 @@ export const routes: Route[] = [
     days: 2,
     image: "forest",
     price: 95,
-    includes: ["kayakPaddleVest", "transferPutIn", "waterproofMap", "tentCampingGear", "packedBreakfast", "safetyBriefing", "experiencedGuide", "pickupTakeOut"],
+    includes: ["kayakPaddleVest", "transferPutIn",  "safetyBriefing", "pickupTakeOut"],
     landmarks: [
       { num: 1, title: "The Technical Section", description: "Day one's most demanding stretch: fallen timber, low branches, sharp bends. Experienced paddling required." },
       { num: 2, title: "Wilderness Camp", description: "No facilities, no roads — just a clearing above the flood line. The most remote camp we offer." },
@@ -469,6 +469,30 @@ export const routes: Route[] = [
     map: { embedId: MAP_ID, lat: 55.410577, lng: 26.047723, zoom: 13 },
   },
 ];
+
+export interface RentalPrice {
+  nameKey: string;
+  weekday: number;
+  weekend: number;
+  sunday: number;
+  dark?: boolean;
+}
+
+export const rentalPrices: RentalPrice[] = [
+  { nameKey: "pricingBoatSingle", weekday: 25,  weekend: 35,  sunday: 30  },
+  { nameKey: "pricingBoatDouble", weekday: 30,  weekend: 40,  sunday: 35  },
+  { nameKey: "pricingBoatTriple", weekday: 45,  weekend: 60,  sunday: 50  },
+  { nameKey: "pricingBoatCanoe",  weekday: 45,  weekend: 60,  sunday: 50  },
+  { nameKey: "pricingBoatRaft",   weekday: 100, weekend: 140, sunday: 120, dark: true },
+];
+
+export const contact = {
+  phone:    "+37064112211",
+  phoneHref: "tel:+37064112211",
+  email:    "ernest20145@gmail.com",
+  emailHref: "mailto:ernest20145@gmail.com",
+  facebook: "https://www.facebook.com/profile.php?id=100063746825280",
+};
 
 export function getRouteBySlug(slug: string): Route | undefined {
   return routes.find((r) => r.slug === slug);
