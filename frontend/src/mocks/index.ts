@@ -489,8 +489,8 @@ export const rentalPrices: RentalPrice[] = [
 export const contact = {
   phone:    "+37064112211",
   phoneHref: "tel:+37064112211",
-  email:    "ernest20145@gmail.com",
-  emailHref: "mailto:ernest20145@gmail.com",
+  email:    "asvejosbaidariucentras.lt",
+  emailHref: "mailto:asvejosbaidariucentras.lt",
   facebook: "https://www.facebook.com/profile.php?id=100063746825280",
 };
 

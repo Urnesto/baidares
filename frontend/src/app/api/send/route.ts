@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
   const { error } = await resend.emails.send({
     from: "Rezervacijos <onboarding@resend.dev>",
-    to: "ernest20145@gmail.com",
+    to: "asvejosbaidariucentras.lt",
     subject: `Nauja rezervacija ${route ?? "maršrutas nepasirinktas"}, ${date ?? "data nepasirinkta"}`,
     html: `
       <h2>Nauja rezervacija</h2>
